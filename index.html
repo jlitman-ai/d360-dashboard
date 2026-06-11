@@ -334,7 +334,7 @@ async function loadData() {
     document.getElementById('hdate').textContent = json.updated;
     populateOwnerFilter();
     render();
-    // Build trends from w1/w2 data already in data.json
+    // Build trends (async — loads daily files for Slack context)
     buildTrendsTable();
   } catch(e) {
     document.getElementById('tbody').innerHTML = '<tr><td colspan="11" style="text-align:center;padding:40px;color:#c23934">Error loading data.json</td></tr>';
@@ -829,12 +829,23 @@ function updateSim(){
 // ═══════════════════════════════════════════════════════════════════════
 // TRENDS
 // ═══════════════════════════════════════════════════════════════════════
-function buildTrendsTable() {
+async function buildTrendsTable() {
   const tbody = document.getElementById('trend-tbody');
   if (!tbody) return;
   tbody.textContent = '';
 
   document.getElementById('trend-updated').textContent = 'Week May 28–Jun 3 vs Jun 4–Jun 8 · DSC credits/day';
+
+  // Pre-load daily data for accounts with trends to get Slack context
+  const data = ACCOUNTS.filter(a => a.country === 'AR' && a.w1_daily_avg != null);
+  await Promise.all(data.map(async a => {
+    if (!DAILY_DATA[a.id]) {
+      try {
+        const res = await fetch(`daily/${a.id}.json?t=${Date.now()}`);
+        if (res.ok) DAILY_DATA[a.id] = await res.json();
+      } catch(e) {}
+    }
+  }));
 
   const data = ACCOUNTS.filter(a => a.country === 'AR' && a.w1_daily_avg != null)
     .sort((a,b) => {
@@ -862,8 +873,14 @@ function buildTrendsTable() {
       ? `<span style="font-weight:800;color:${trendColor}">${tp>0?'+':''}${tp}%</span>`
       : '—';
 
+    const dailyRaw = DAILY_DATA[a.id];
+    const ctx = dailyRaw?.slack_context;
+    const nameCell = ctx
+      ? `<td style="${tdStyle}"><div style="font-weight:800;color:#032d60;font-size:12px">${esc(a.name)}</div><div style="font-size:10px;color:#0176d3;margin-top:3px;cursor:pointer" onclick="event.stopPropagation();openDetail(ACCOUNTS.find(x=>x.id==='${a.id}'))">💬 Ver contexto</div></td>`
+      : `<td style="${tdStyle};font-weight:800;color:#032d60">${esc(a.name)}</td>`;
+
     tr.innerHTML = `
-      <td style="${tdStyle};font-weight:800;color:#032d60">${esc(a.name)}</td>
+      ${nameCell}
       <td style="${tdStyle};color:#5a6b7c">${esc(a.owner)}</td>
       <td style="${tdStyle};text-align:right;color:#9aabb8">${a.w1_daily_avg != null ? fmtM(a.w1_daily_avg)+'/d' : '—'}</td>
       <td style="${tdStyle};text-align:right;font-weight:700;color:#032d60">${a.w2_daily_avg != null ? fmtM(a.w2_daily_avg)+'/d' : '—'}</td>
