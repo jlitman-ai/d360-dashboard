@@ -42,7 +42,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000000rpjd2AAA",
+      "bubble_allowance": 65600000,
+      "bubble_crr": 179.1
     },
     {
       "id": "0013000001GXGozAAH",
@@ -121,7 +124,10 @@
           "crr": 0.0
         }
       ],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000001GXGozAAH",
+      "bubble_allowance": 89541467,
+      "bubble_crr": 133.1
     },
     {
       "id": "0013000001CCpybAAD",
@@ -164,7 +170,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000001CCpybAAD",
+      "bubble_allowance": 9392200000,
+      "bubble_crr": 99.5
     },
     {
       "id": "0013000000Boo13AAB",
@@ -364,7 +373,10 @@
           "crr": 0.0
         }
       ],
-      "sela": true
+      "sela": true,
+      "bubble_group": "0013000000Boo13AAB",
+      "bubble_allowance": 13622725000,
+      "bubble_crr": 62.5
     },
     {
       "id": "0013000000LjCTqAAN",
@@ -416,7 +428,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000000LjCTqAAN",
+      "bubble_allowance": 83520000,
+      "bubble_crr": 54.6
     },
     {
       "id": "0013000000hItxDAAS",
@@ -450,7 +465,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000000hItxDAAS",
+      "bubble_allowance": 74800000,
+      "bubble_crr": 44.9
     },
     {
       "id": "00130000005dLuMAAU",
@@ -547,7 +565,10 @@
           "crr": 0.0
         }
       ],
-      "sela": true
+      "sela": true,
+      "bubble_group": "00130000005dLuMAAU",
+      "bubble_allowance": 4268683334,
+      "bubble_crr": 42.5
     },
     {
       "id": "0013y00001chQJ7AAM",
@@ -590,7 +611,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013y00001chQJ7AAM",
+      "bubble_allowance": 6360000,
+      "bubble_crr": 19.0
     },
     {
       "id": "00130000016iGuYAAU",
@@ -633,7 +657,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "BANCO HIPOTECARIO S.A.",
+      "bubble_allowance": 18900000,
+      "bubble_crr": 8.2
     },
     {
       "id": "0010M00001YuH8VQAV",
@@ -667,7 +694,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001YuH8VQAV",
+      "bubble_allowance": 250000,
+      "bubble_crr": 5.9
     },
     {
       "id": "0010M00001YtwTbQAJ",
@@ -763,7 +793,10 @@
           "crr": 0.1
         }
       ],
-      "sela": true
+      "sela": true,
+      "bubble_group": "0010M00001YtwTbQAJ",
+      "bubble_allowance": 518700000,
+      "bubble_crr": 3.0
     },
     {
       "id": "0013000001GVBNOAA5",
@@ -806,7 +839,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000001GVBNOAA5",
+      "bubble_allowance": 931700000,
+      "bubble_crr": 1.9
     },
     {
       "id": "0013000001NXdVAAA1",
@@ -849,7 +885,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000001NXdVAAA1",
+      "bubble_allowance": 24279167,
+      "bubble_crr": 1.5
     },
     {
       "id": "0013000000IkoPEAAZ",
@@ -892,7 +931,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000000IkoPEAAZ",
+      "bubble_allowance": 2625000,
+      "bubble_crr": 1.5
     },
     {
       "id": "0013000000IkoJ1AAJ",
@@ -926,7 +968,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000000IkoJ1AAJ",
+      "bubble_allowance": 13500000,
+      "bubble_crr": 1.0
     },
     {
       "id": "0010M00001SJS6AQAX",
@@ -969,7 +1014,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001SJS6AQAX",
+      "bubble_allowance": 38823963,
+      "bubble_crr": 1.0
     },
     {
       "id": "0010M00001XyHDGQA3",
@@ -1012,7 +1060,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001XyHDGQA3",
+      "bubble_allowance": 370210000,
+      "bubble_crr": 0.7
     },
     {
       "id": "0013000000326geAAA",
@@ -1055,7 +1106,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000000326geAAA",
+      "bubble_allowance": 950000,
+      "bubble_crr": 0.6
     },
     {
       "id": "0013000001Kc6AyAAJ",
@@ -1089,7 +1143,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000001Kc6AyAAJ",
+      "bubble_allowance": 250000,
+      "bubble_crr": 0.4
     },
     {
       "id": "0010M00001WYEHwQAP",
@@ -1150,7 +1207,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001WYEHwQAP",
+      "bubble_allowance": 146260000,
+      "bubble_crr": 0.3
     },
     {
       "id": "0013000000roRAXAA2",
@@ -1193,7 +1253,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000000roRAXAA2",
+      "bubble_allowance": 950000,
+      "bubble_crr": 0.1
     },
     {
       "id": "0010M00001WaxcVQAR",
@@ -1281,7 +1344,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001WaxcVQAR",
+      "bubble_allowance": 230766667,
+      "bubble_crr": 0.0
     },
     {
       "id": "0010M00001UV6CPQA1",
@@ -1315,7 +1381,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001UV6CPQA1",
+      "bubble_allowance": 5500000,
+      "bubble_crr": 0.0
     },
     {
       "id": "0013000000IkqzpAAB",
@@ -1358,7 +1427,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "BANCO HIPOTECARIO S.A.",
+      "bubble_allowance": 18900000,
+      "bubble_crr": 0.0
     },
     {
       "id": "0013000000ZjBNtAAN",
@@ -1401,7 +1473,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000000ZjBNtAAN",
+      "bubble_allowance": 31050000,
+      "bubble_crr": 0.0
     },
     {
       "id": "0013y00001ceCeaAAE",
@@ -1435,7 +1510,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013y00001ceCeaAAE",
+      "bubble_allowance": 782700,
+      "bubble_crr": 0.0
     },
     {
       "id": "0010M00001Z0CHqQAN",
@@ -1478,7 +1556,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001Z0CHqQAN",
+      "bubble_allowance": 700000,
+      "bubble_crr": 0.0
     },
     {
       "id": "001ed00000Ij7fkAAB",
@@ -1521,7 +1602,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "001ed00000Ij7fkAAB",
+      "bubble_allowance": 450000,
+      "bubble_crr": 0.0
     },
     {
       "id": "0010M00001WIWyTQAX",
@@ -1555,7 +1639,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001WIWyTQAX",
+      "bubble_allowance": 1950000,
+      "bubble_crr": 0.0
     },
     {
       "id": "0010M00001QkgEKQAZ",
@@ -1598,7 +1685,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0010M00001QkgEKQAZ",
+      "bubble_allowance": 850000,
+      "bubble_crr": 0.0
     },
     {
       "id": "0013000001MreUvAAJ",
@@ -1650,7 +1740,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000001MreUvAAJ",
+      "bubble_allowance": 5700000,
+      "bubble_crr": 0.0
     },
     {
       "id": "0013000001Msa8jAAB",
@@ -1693,7 +1786,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "0013000001Msa8jAAB",
+      "bubble_allowance": 3500000,
+      "bubble_crr": 0.0
     },
     {
       "id": "0010M00001QqvYQQAZ",
@@ -1727,7 +1823,10 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "Zurich Insurance Group AG",
+      "bubble_allowance": 10600900,
+      "bubble_crr": 0.0
     },
     {
       "id": "0013000000hJOT0AAO",
@@ -1770,7 +1869,302 @@
         }
       ],
       "children": [],
-      "sela": false
+      "sela": false,
+      "bubble_group": "Zurich Insurance Group AG",
+      "bubble_allowance": 10600900,
+      "bubble_crr": 0.0
     }
-  ]
+  ],
+  "bubble_groups": {
+    "0013000000rpjd2AAA": {
+      "name": "OSDE Organizaci\u00f3n de Servicios Directos Empresarios",
+      "allowance": 65600000,
+      "usage": 53861225,
+      "crr": 179.1,
+      "ids": [
+        "0013000000rpjd2AAA"
+      ]
+    },
+    "0013000001GXGozAAH": {
+      "name": "Pan American Energy, S.L., Sucursal Argentina",
+      "allowance": 89541467,
+      "usage": 52809173,
+      "crr": 133.1,
+      "ids": [
+        "0013000001GXGozAAH"
+      ]
+    },
+    "0013000001CCpybAAD": {
+      "name": "Banco Macro S.A.",
+      "allowance": 9392200000,
+      "usage": 795084925,
+      "crr": 99.5,
+      "ids": [
+        "0013000001CCpybAAD"
+      ]
+    },
+    "0013000000Boo13AAB": {
+      "name": "Telecom S.A.",
+      "allowance": 13622725000,
+      "usage": 227409578,
+      "crr": 62.5,
+      "ids": [
+        "0013000000Boo13AAB"
+      ]
+    },
+    "0013000000LjCTqAAN": {
+      "name": "COTO",
+      "allowance": 83520000,
+      "usage": 13309864,
+      "crr": 54.6,
+      "ids": [
+        "0013000000LjCTqAAN"
+      ]
+    },
+    "0013000000hItxDAAS": {
+      "name": "Newsan S.A.",
+      "allowance": 74800000,
+      "usage": 6101846,
+      "crr": 44.9,
+      "ids": [
+        "0013000000hItxDAAS"
+      ]
+    },
+    "00130000005dLuMAAU": {
+      "name": "MercadoLibre SRL",
+      "allowance": 4268683334,
+      "usage": 60993289,
+      "crr": 42.5,
+      "ids": [
+        "00130000005dLuMAAU"
+      ]
+    },
+    "0013y00001chQJ7AAM": {
+      "name": "Play Digital S. A. CUIT 30-71682943-6",
+      "allowance": 6360000,
+      "usage": 549186,
+      "crr": 19.0,
+      "ids": [
+        "0013y00001chQJ7AAM"
+      ]
+    },
+    "BANCO HIPOTECARIO S.A.": {
+      "name": "BANCO HIPOTECARIO S.A.",
+      "allowance": 18900000,
+      "usage": 736308,
+      "crr": 8.2,
+      "ids": [
+        "00130000016iGuYAAU",
+        "0013000000IkqzpAAB"
+      ]
+    },
+    "0010M00001YuH8VQAV": {
+      "name": "CAJA DE SEGUROS S.A.",
+      "allowance": 250000,
+      "usage": 5365,
+      "crr": 5.9,
+      "ids": [
+        "0010M00001YuH8VQAV"
+      ]
+    },
+    "0010M00001YtwTbQAJ": {
+      "name": "YPF S.A 2",
+      "allowance": 518700000,
+      "usage": 3099150,
+      "crr": 3.0,
+      "ids": [
+        "0010M00001YtwTbQAJ"
+      ]
+    },
+    "0013000001GVBNOAA5": {
+      "name": "Directv Argentina S.R.L.",
+      "allowance": 931700000,
+      "usage": 2075364,
+      "crr": 1.9,
+      "ids": [
+        "0013000001GVBNOAA5"
+      ]
+    },
+    "0013000001NXdVAAA1": {
+      "name": "Payway S.A.U.",
+      "allowance": 24279167,
+      "usage": 149252,
+      "crr": 1.5,
+      "ids": [
+        "0013000001NXdVAAA1"
+      ]
+    },
+    "0013000000IkoPEAAZ": {
+      "name": "San Cristobal Seguros",
+      "allowance": 2625000,
+      "usage": 25907,
+      "crr": 1.5,
+      "ids": [
+        "0013000000IkoPEAAZ"
+      ]
+    },
+    "0013000000IkoJ1AAJ": {
+      "name": "Iplan Networks",
+      "allowance": 13500000,
+      "usage": 91067,
+      "crr": 1.0,
+      "ids": [
+        "0013000000IkoJ1AAJ"
+      ]
+    },
+    "0010M00001SJS6AQAX": {
+      "name": "Provincia ART",
+      "allowance": 38823963,
+      "usage": 285214,
+      "crr": 1.0,
+      "ids": [
+        "0010M00001SJS6AQAX"
+      ]
+    },
+    "0010M00001XyHDGQA3": {
+      "name": "SanCor Salud",
+      "allowance": 370210000,
+      "usage": 537054,
+      "crr": 0.7,
+      "ids": [
+        "0010M00001XyHDGQA3"
+      ]
+    },
+    "0013000000326geAAA": {
+      "name": "Globant LLC",
+      "allowance": 950000,
+      "usage": 992,
+      "crr": 0.6,
+      "ids": [
+        "0013000000326geAAA"
+      ]
+    },
+    "0013000001Kc6AyAAJ": {
+      "name": "LA ANONIMA - S.A.I.E.P.",
+      "allowance": 250000,
+      "usage": 456,
+      "crr": 0.4,
+      "ids": [
+        "0013000001Kc6AyAAJ"
+      ]
+    },
+    "0010M00001WYEHwQAP": {
+      "name": "Ual\u00e1",
+      "allowance": 146260000,
+      "usage": 112290,
+      "crr": 0.3,
+      "ids": [
+        "0010M00001WYEHwQAP"
+      ]
+    },
+    "0013000000roRAXAA2": {
+      "name": "Gire S.A",
+      "allowance": 950000,
+      "usage": 154,
+      "crr": 0.1,
+      "ids": [
+        "0013000000roRAXAA2"
+      ]
+    },
+    "0010M00001WaxcVQAR": {
+      "name": "AEROPUERTOS ARGENTINA S.A.",
+      "allowance": 230766667,
+      "usage": 15401,
+      "crr": 0.0,
+      "ids": [
+        "0010M00001WaxcVQAR"
+      ]
+    },
+    "0010M00001UV6CPQA1": {
+      "name": "Avalian",
+      "allowance": 5500000,
+      "usage": 0,
+      "crr": 179.1,
+      "ids": [
+        "0010M00001UV6CPQA1"
+      ]
+    },
+    "0013000000ZjBNtAAN": {
+      "name": "Cirion Technologies Solutions, LLC",
+      "allowance": 31050000,
+      "usage": 0,
+      "crr": 179.1,
+      "ids": [
+        "0013000000ZjBNtAAN"
+      ]
+    },
+    "0013y00001ceCeaAAE": {
+      "name": "Danone Specialized Nutrition",
+      "allowance": 782700,
+      "usage": 1,
+      "crr": 0.0,
+      "ids": [
+        "0013y00001ceCeaAAE"
+      ]
+    },
+    "0010M00001Z0CHqQAN": {
+      "name": "INVIU SAU",
+      "allowance": 700000,
+      "usage": 0,
+      "crr": 179.1,
+      "ids": [
+        "0010M00001Z0CHqQAN"
+      ]
+    },
+    "001ed00000Ij7fkAAB": {
+      "name": "MEDIFE ASOCIACION CIVIL",
+      "allowance": 450000,
+      "usage": 0,
+      "crr": 179.1,
+      "ids": [
+        "001ed00000Ij7fkAAB"
+      ]
+    },
+    "0010M00001WIWyTQAX": {
+      "name": "Ra\u00edzen Argentina S.A.U.",
+      "allowance": 1950000,
+      "usage": 12,
+      "crr": 0.0,
+      "ids": [
+        "0010M00001WIWyTQAX"
+      ]
+    },
+    "0010M00001QkgEKQAZ": {
+      "name": "Red Link S.A.",
+      "allowance": 850000,
+      "usage": 16,
+      "crr": 0.0,
+      "ids": [
+        "0010M00001QkgEKQAZ"
+      ]
+    },
+    "0013000001MreUvAAJ": {
+      "name": "Swiss Medical Group",
+      "allowance": 5700000,
+      "usage": 47,
+      "crr": 0.0,
+      "ids": [
+        "0013000001MreUvAAJ"
+      ]
+    },
+    "0013000001Msa8jAAB": {
+      "name": "Telecentro Residencial",
+      "allowance": 3500000,
+      "usage": 0,
+      "crr": 179.1,
+      "ids": [
+        "0013000001Msa8jAAB"
+      ]
+    },
+    "Zurich Insurance Group AG": {
+      "name": "Zurich Insurance Group AG",
+      "allowance": 10600900,
+      "usage": 37,
+      "crr": 0.0,
+      "ids": [
+        "0010M00001QqvYQQAZ",
+        "0013000000hJOT0AAO"
+      ]
+    }
+  }
 }

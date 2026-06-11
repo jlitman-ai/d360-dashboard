@@ -405,20 +405,47 @@ const cols = {growth:'#c23934', track:'#c07e00', activate:'#9eb5c8'};
 function rebuildBubble(data) {
   if (bubChart) bubChart.destroy();
   const ctx = document.getElementById('bChart').getContext('2d');
-  const datasets = data.map(a => ({
-    label: a.name,
-    data: [{x:Math.min(a.crr,280), y:a.allowance/1e6, r:Math.max(7,Math.min(28,Math.sqrt(a.allowance/1e6)*1.3))}],
-    backgroundColor: cols[a.status]+'bb',
-    borderColor: cols[a.status],
+
+  // Aggregate filtered accounts into bubble groups
+  const bubbleMap = {};
+  data.forEach(a => {
+    const bg = a.bubble_group || a.id;
+    if (!bubbleMap[bg]) {
+      bubbleMap[bg] = {name: bg === a.id ? a.name : bg, crr: a.crr,
+                       allowance: 0, usage: 0, status: a.status, _accs: []};
+    }
+    bubbleMap[bg].allowance += a.allowance;
+    bubbleMap[bg].usage += a.usage;
+    bubbleMap[bg]._accs.push(a);
+    // Use CRR from highest-usage account
+    if (a.usage > (bubbleMap[bg]._primary?.usage||0)) {
+      bubbleMap[bg].crr = a.crr;
+      bubbleMap[bg].status = a.status;
+      bubbleMap[bg]._primary = a;
+      bubbleMap[bg].name = a.name;
+    }
+  });
+
+  const datasets = Object.values(bubbleMap).map(b => ({
+    label: b.name,
+    data: [{x:Math.min(b.crr,280), y:b.allowance/1e6, r:Math.max(7,Math.min(28,Math.sqrt(b.allowance/1e6)*1.3))}],
+    backgroundColor: cols[b.status]+'bb',
+    borderColor: cols[b.status],
     borderWidth: 2,
-    _acc: a
+    _acc: b._primary || b._accs[0],
+    _accs: b._accs
   }));
   bubChart = new Chart(ctx, {
     type:'bubble', data:{datasets},
     plugins:[quadrantPlugin],
     options:{
       responsive:true, maintainAspectRatio:false,
-      onClick:(e,els) => { if(els.length) openDetail(bubChart.data.datasets[els[0].datasetIndex]._acc); },
+      onClick:(e,els) => {
+        if(!els.length) return;
+        const ds = bubChart.data.datasets[els[0].datasetIndex];
+        // If bubble has multiple accounts, open the primary (highest usage)
+        openDetail(ds._acc);
+      },
       plugins:{
         legend:{display:false},
         tooltip:{callbacks:{label:c=>{
