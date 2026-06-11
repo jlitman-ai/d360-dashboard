@@ -751,21 +751,50 @@ function buildDailyChart(acc){
 function buildProjChart(acc){
   if(projChart)projChart.destroy();
   const ctx=document.getElementById('projC').getContext('2d');
-  const dr=acc.daily_rate,total=acc.days_elapsed+acc.days_remaining;
-  const step=Math.max(1,Math.ceil(total/14));
+
+  // Use real 90-day data if available, otherwise fall back to daily_rate
+  const raw=DAILY_DATA[acc.id];
   const labels=[],actual=[],proj=[];
-  for(let d=-acc.days_elapsed;d<=acc.days_remaining;d+=step){
-    const dt=new Date();dt.setDate(dt.getDate()+d);
-    labels.push(dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}));
-    const v=Math.round(acc.usage+dr*d);
-    if(d<=0){actual.push(Math.max(0,v));proj.push(null);}
-    else{actual.push(null);proj.push(Math.max(0,v));}
+
+  if(raw && raw.dates && raw.series.DSC){
+    // Plot real historical data
+    raw.dates.forEach((d,i)=>{
+      labels.push(d);
+      actual.push(raw.series.DSC[i]);
+      proj.push(null);
+    });
+    // Add projection from last actual point
+    const lastActual=raw.series.DSC[raw.series.DSC.length-1];
+    const dr=acc.daily_rate;
+    const projDays=Math.min(acc.days_remaining, 90);
+    const step=Math.max(1,Math.ceil(projDays/8));
+    for(let d=step;d<=projDays;d+=step){
+      const dt=new Date();dt.setDate(dt.getDate()+d);
+      labels.push(dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}));
+      actual.push(null);
+      proj.push(Math.round(dr));
+    }
+  } else {
+    // Fallback: synthetic from daily_rate
+    const dr=acc.daily_rate,total=acc.days_elapsed+acc.days_remaining;
+    const step=Math.max(1,Math.ceil(total/14));
+    for(let d=-Math.min(acc.days_elapsed,90);d<=acc.days_remaining;d+=step){
+      const dt=new Date();dt.setDate(dt.getDate()+d);
+      labels.push(dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}));
+      const v=Math.round(acc.usage+dr*d);
+      if(d<=0){actual.push(Math.max(0,v));proj.push(null);}
+      else{actual.push(null);proj.push(Math.round(dr));}
+    }
   }
-  projChart=new Chart(ctx,{type:'line',data:{labels,datasets:[
-    {label:'Actual',data:actual,borderColor:'#0176d3',backgroundColor:'#0176d312',fill:true,tension:.3,pointRadius:2},
-    {label:'Projected',data:proj,borderColor:'#c07e00',borderDash:[6,4],backgroundColor:'transparent',tension:.3,pointRadius:1},
-    {label:'Allowance',data:labels.map(()=>acc.allowance),borderColor:'#c23934',borderDash:[3,3],borderWidth:1.5,pointRadius:0,backgroundColor:'transparent'}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{y:{ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'}},x:{grid:{display:false},ticks:{font:{size:9}}}}}});
+
+  // Add avg line
+  const avgLine=labels.map(()=>acc.daily_rate);
+
+  projChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[
+    {label:'Daily DSC',data:actual,backgroundColor:'#0176d388',borderColor:'#0176d3',borderWidth:1,type:'bar'},
+    {label:'Projected (avg)',data:proj,backgroundColor:'#c07e0044',borderColor:'#c07e00',borderWidth:1,type:'bar'},
+    {label:'90d Avg',data:avgLine,borderColor:'#c23934',borderDash:[4,3],borderWidth:1.5,pointRadius:0,backgroundColor:'transparent',type:'line'}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{y:{ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'}},x:{grid:{display:false},ticks:{font:{size:9},maxTicksLimit:12}}}}});
 }
 
 function updateSim(){
