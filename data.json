@@ -4,10 +4,10 @@
     {
       "id": "0013000000rpjd2AAA",
       "name": "OSDE Organizaci\u00f3n de Servicios Directos Empresarios",
+      "global_company": "OSDE Organizaci\u00f3n de Servicios Directos Empresarios",
       "country": "AR",
       "owner": "Malena Ornstein",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_06",
-      "aov_band": "$200k-600k",
       "allowance": 65600000,
       "usage": 53861225,
       "crr": 179.1,
@@ -29,7 +29,7 @@
           "allowance": 50600000,
           "usage": 47674581,
           "days_remaining": 398,
-          "overage_date": ""
+          "account": "OSDE Organizaci\u00f3n de Servicios Directos Empresarios"
         },
         {
           "type": "Data Services Credits",
@@ -38,32 +38,42 @@
           "allowance": 15000000,
           "usage": 6186644,
           "days_remaining": 39,
-          "overage_date": ""
+          "account": "OSDE Organizaci\u00f3n de Servicios Directos Empresarios"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000001GXGozAAH",
       "name": "Pan American Energy, S.L., Sucursal Argentina",
+      "global_company": "PAN AMERICAN ENERGY GROUP SL.",
       "country": "AR",
       "owner": "Karina de la Vega",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_04",
-      "aov_band": "$1M-5M",
-      "allowance": 89299800,
+      "allowance": 89541467,
       "usage": 52809173,
       "crr": 133.1,
-      "pct_used": 59.1,
-      "pct_remaining": 40.9,
+      "pct_used": 59.0,
+      "pct_remaining": 41.0,
       "in_overage": false,
       "days_remaining": 917,
       "days_elapsed": 1,
       "overage_date": "",
-      "upsell_usd": 72863,
+      "upsell_usd": 74071,
       "status": "growth",
       "crr_cohort": "Consuming Well",
       "daily_rate": 52809173,
       "schedules": [
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 241667,
+          "usage": 0,
+          "days_remaining": 34,
+          "account": "Pan American Energy Llc [Upstream]"
+        },
         {
           "type": "Data Services Credits",
           "start": "",
@@ -71,7 +81,7 @@
           "allowance": 85700000,
           "usage": 52800173,
           "days_remaining": 366,
-          "overage_date": ""
+          "account": "Pan American Energy, S.L., Sucursal Argentina"
         },
         {
           "type": "Data Services Credits",
@@ -80,7 +90,7 @@
           "allowance": 9000,
           "usage": 9000,
           "days_remaining": 112,
-          "overage_date": ""
+          "account": "Pan American Energy, S.L., Sucursal Argentina"
         },
         {
           "type": "Data Services Credits",
@@ -89,7 +99,7 @@
           "allowance": 750000,
           "usage": 0,
           "days_remaining": 908,
-          "overage_date": ""
+          "account": "Pan American Energy, S.L., Sucursal Argentina"
         },
         {
           "type": "Data Services Credits",
@@ -98,7 +108,17 @@
           "allowance": 2840800,
           "usage": 0,
           "days_remaining": 917,
-          "overage_date": ""
+          "account": "Pan American Energy, S.L., Sucursal Argentina"
+        }
+      ],
+      "children": [
+        {
+          "id": "0013000001CCp8VAAT",
+          "name": "Pan American Energy Llc [Upstream]",
+          "allowance": 241667,
+          "usage": 0,
+          "pct_used": 0.0,
+          "crr": 0.0
         }
       ],
       "sela": false
@@ -106,10 +126,10 @@
     {
       "id": "0013000001CCpybAAD",
       "name": "Banco Macro S.A.",
+      "global_company": "Banco Macro S.A.",
       "country": "AR",
       "owner": "Agustin Schachmann",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_02",
-      "aov_band": "$1M-5M",
       "allowance": 9392200000,
       "usage": 795084925,
       "crr": 99.5,
@@ -131,7 +151,7 @@
           "allowance": 9272000000,
           "usage": 795069067,
           "days_remaining": 1331,
-          "overage_date": ""
+          "account": "Banco Macro S.A."
         },
         {
           "type": "Flex Credits",
@@ -140,23 +160,24 @@
           "allowance": 120200000,
           "usage": 15858,
           "days_remaining": 1331,
-          "overage_date": ""
+          "account": "Banco Macro S.A."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000000Boo13AAB",
       "name": "Telecom S.A.",
+      "global_company": "TELECOM ARGENTINA S.A.",
       "country": "AR",
-      "owner": "\u2014",
+      "owner": "Clara Bianchetti",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$0",
-      "allowance": 10269675000,
-      "usage": 213847604,
+      "allowance": 13622725000,
+      "usage": 227409578,
       "crr": 62.5,
-      "pct_used": 2.1,
-      "pct_remaining": 97.9,
+      "pct_used": 1.7,
+      "pct_remaining": 98.3,
       "in_overage": false,
       "days_remaining": 875,
       "days_elapsed": 1,
@@ -164,8 +185,98 @@
       "upsell_usd": 2482466,
       "status": "track",
       "crr_cohort": "Consuming",
-      "daily_rate": 213847604,
+      "daily_rate": 227409578,
       "schedules": [
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 6275000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Micro Sistemas S.A.U."
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 2500000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Micro Sistemas S.A.U."
+        },
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 6275000,
+          "usage": 12897930,
+          "days_remaining": 875,
+          "account": "Telecom Argentina S.A."
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 3302700000,
+          "usage": 661180,
+          "days_remaining": 875,
+          "account": "Telecom Argentina S.A."
+        },
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 6275000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Telecom Argentina S.A."
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 2500000,
+          "usage": 2864,
+          "days_remaining": 875,
+          "account": "Telecom Argentina S.A."
+        },
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 6275000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Telecom Argentina S.A."
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 2700000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Telecom Argentina S.A."
+        },
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 6275000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Telecom Argentina S.A."
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 2500000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Telecom Argentina S.A."
+        },
         {
           "type": "Data Services Credits",
           "start": "",
@@ -173,7 +284,7 @@
           "allowance": 8566975000,
           "usage": 213847604,
           "days_remaining": 875,
-          "overage_date": ""
+          "account": "Telecom S.A."
         },
         {
           "type": "Flex Credits",
@@ -182,7 +293,75 @@
           "allowance": 1702700000,
           "usage": 0,
           "days_remaining": 875,
-          "overage_date": ""
+          "account": "Telecom S.A."
+        },
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 6275000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Telecom S.A. - Copado"
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 2500000,
+          "usage": 0,
+          "days_remaining": 875,
+          "account": "Telecom S.A. - Copado"
+        }
+      ],
+      "children": [
+        {
+          "id": "0013y00001cQE4pAAG",
+          "name": "Micro Sistemas S.A.U.",
+          "allowance": 8775000,
+          "usage": 0,
+          "pct_used": 0.0,
+          "crr": 0.0
+        },
+        {
+          "id": "00130000005tQ9vAAE",
+          "name": "Telecom Argentina S.A.",
+          "allowance": 3308975000,
+          "usage": 13559110,
+          "pct_used": 0.4,
+          "crr": 12.3
+        },
+        {
+          "id": "0013y00001eDTFKAA4",
+          "name": "Telecom Argentina S.A.",
+          "allowance": 8775000,
+          "usage": 2864,
+          "pct_used": 0.0,
+          "crr": 1.0
+        },
+        {
+          "id": "001ed00000GPtRaAAL",
+          "name": "Telecom Argentina S.A.",
+          "allowance": 8975000,
+          "usage": 0,
+          "pct_used": 0.0,
+          "crr": 0.0
+        },
+        {
+          "id": "001ed00000GR5gkAAD",
+          "name": "Telecom Argentina S.A.",
+          "allowance": 8775000,
+          "usage": 0,
+          "pct_used": 0.0,
+          "crr": 0.0
+        },
+        {
+          "id": "0010M00001SJ7JnQAL",
+          "name": "Telecom S.A. - Copado",
+          "allowance": 8775000,
+          "usage": 0,
+          "pct_used": 0.0,
+          "crr": 0.0
         }
       ],
       "sela": true
@@ -190,10 +369,10 @@
     {
       "id": "0013000000LjCTqAAN",
       "name": "COTO",
+      "global_company": "COTO",
       "country": "AR",
       "owner": "Clara Bianchetti",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$600k-1M",
       "allowance": 83520000,
       "usage": 13309864,
       "crr": 54.6,
@@ -215,7 +394,7 @@
           "allowance": 20000,
           "usage": 20000,
           "days_remaining": 517,
-          "overage_date": ""
+          "account": "COTO"
         },
         {
           "type": "Data Services Credits",
@@ -224,7 +403,7 @@
           "allowance": 35400000,
           "usage": 3621006,
           "days_remaining": 521,
-          "overage_date": ""
+          "account": "COTO"
         },
         {
           "type": "Flex Credits",
@@ -233,18 +412,19 @@
           "allowance": 48100000,
           "usage": 9668858,
           "days_remaining": 517,
-          "overage_date": ""
+          "account": "COTO"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000000hItxDAAS",
       "name": "Newsan S.A.",
+      "global_company": "NEWSAN S.A.",
       "country": "AR",
       "owner": "Belen Kindrat",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_01",
-      "aov_band": "$200k-600k",
       "allowance": 74800000,
       "usage": 6101846,
       "crr": 44.9,
@@ -266,32 +446,51 @@
           "allowance": 74800000,
           "usage": 6101846,
           "days_remaining": 294,
-          "overage_date": ""
+          "account": "Newsan S.A."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "00130000005dLuMAAU",
       "name": "MercadoLibre SRL",
+      "global_company": "MELI PARTICIPACIONES SL",
       "country": "AR",
       "owner": "Clara Bianchetti",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$10M-25M",
-      "allowance": 310700000,
-      "usage": 60980634,
+      "allowance": 4268683334,
+      "usage": 60993289,
       "crr": 42.5,
-      "pct_used": 19.6,
-      "pct_remaining": 80.4,
+      "pct_used": 1.4,
+      "pct_remaining": 98.6,
       "in_overage": false,
-      "days_remaining": 235,
-      "days_elapsed": 130,
+      "days_remaining": 571,
+      "days_elapsed": 1,
       "overage_date": "",
-      "upsell_usd": 362328,
+      "upsell_usd": 38888800,
       "status": "track",
       "crr_cohort": "Under Consuming",
-      "daily_rate": 469082,
+      "daily_rate": 60993289,
       "schedules": [
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 2517583334,
+          "usage": 7435,
+          "days_remaining": 571,
+          "account": "Mercado Libre SELA TAB"
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 1440400000,
+          "usage": 5220,
+          "days_remaining": 571,
+          "account": "Mercado Libre SELA TAB"
+        },
         {
           "type": "Data Services Credits",
           "start": "",
@@ -299,7 +498,7 @@
           "allowance": 5000000,
           "usage": 5000000,
           "days_remaining": 189,
-          "overage_date": ""
+          "account": "MercadoLibre SRL"
         },
         {
           "type": "Data Services Credits",
@@ -308,7 +507,7 @@
           "allowance": 283500000,
           "usage": 55901008,
           "days_remaining": 204,
-          "overage_date": ""
+          "account": "MercadoLibre SRL"
         },
         {
           "type": "Data Services Credits",
@@ -317,7 +516,7 @@
           "allowance": 500000,
           "usage": 0,
           "days_remaining": 235,
-          "overage_date": ""
+          "account": "MercadoLibre SRL"
         },
         {
           "type": "Flex Credits",
@@ -326,7 +525,7 @@
           "allowance": 15200000,
           "usage": 79626,
           "days_remaining": 189,
-          "overage_date": ""
+          "account": "MercadoLibre SRL"
         },
         {
           "type": "Flex Credits",
@@ -335,18 +534,28 @@
           "allowance": 6500000,
           "usage": 0,
           "days_remaining": 235,
-          "overage_date": ""
+          "account": "MercadoLibre SRL"
         }
       ],
-      "sela": false
+      "children": [
+        {
+          "id": "001ed00000ZkW7BAAV",
+          "name": "Mercado Libre SELA TAB",
+          "allowance": 3957983334,
+          "usage": 12655,
+          "pct_used": 0.0,
+          "crr": 0.0
+        }
+      ],
+      "sela": true
     },
     {
       "id": "0013y00001chQJ7AAM",
       "name": "Play Digital S. A. CUIT 30-71682943-6",
+      "global_company": "Play Digital S. A. CUIT 30-71682943-6",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_04",
-      "aov_band": "$200k-600k",
       "allowance": 6360000,
       "usage": 549186,
       "crr": 19.0,
@@ -368,7 +577,7 @@
           "allowance": 1260000,
           "usage": 9448,
           "days_remaining": 204,
-          "overage_date": ""
+          "account": "Play Digital S. A. CUIT 30-71682943-6"
         },
         {
           "type": "Flex Credits",
@@ -377,73 +586,32 @@
           "allowance": 5100000,
           "usage": 539738,
           "days_remaining": 204,
-          "overage_date": ""
+          "account": "Play Digital S. A. CUIT 30-71682943-6"
         }
       ],
+      "children": [],
       "sela": false
-    },
-    {
-      "id": "00130000005tQ9vAAE",
-      "name": "Telecom Argentina S.A.",
-      "country": "AR",
-      "owner": "Clara Bianchetti",
-      "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$10M-25M",
-      "allowance": 3308975000,
-      "usage": 13559110,
-      "crr": 12.3,
-      "pct_used": 0.4,
-      "pct_remaining": 99.6,
-      "in_overage": false,
-      "days_remaining": 875,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 0,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 13559110,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 6275000,
-          "usage": 12897930,
-          "days_remaining": 875,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 3302700000,
-          "usage": 661180,
-          "days_remaining": 875,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
     },
     {
       "id": "00130000016iGuYAAU",
       "name": "BHN Seguros Generales S.A.",
+      "global_company": "BANCO HIPOTECARIO S.A.",
       "country": "AR",
-      "owner": "\u2014",
+      "owner": "Alfredo Gabriel Panciera",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_03",
-      "aov_band": "$600k-1M",
-      "allowance": 17950000,
-      "usage": 736305,
+      "allowance": 18900000,
+      "usage": 736308,
       "crr": 8.2,
-      "pct_used": 4.1,
-      "pct_remaining": 95.9,
+      "pct_used": 3.9,
+      "pct_remaining": 96.1,
       "in_overage": false,
-      "days_remaining": 186,
-      "days_elapsed": 179,
+      "days_remaining": 205,
+      "days_elapsed": 160,
       "overage_date": "",
-      "upsell_usd": 68854,
+      "upsell_usd": 73604,
       "status": "activate",
       "crr_cohort": "Under Consuming",
-      "daily_rate": 4113,
+      "daily_rate": 4602,
       "schedules": [
         {
           "type": "Data Services Credits",
@@ -452,7 +620,7 @@
           "allowance": 750000,
           "usage": 3909,
           "days_remaining": 186,
-          "overage_date": ""
+          "account": "BHN Seguros Generales S.A."
         },
         {
           "type": "Flex Credits",
@@ -461,7 +629,35 @@
           "allowance": 17200000,
           "usage": 732396,
           "days_remaining": 186,
-          "overage_date": ""
+          "account": "BHN Seguros Generales S.A."
+        },
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 750000,
+          "usage": 3,
+          "days_remaining": 205,
+          "account": "Banco Hipotecario S A"
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 200000,
+          "usage": 0,
+          "days_remaining": 205,
+          "account": "Banco Hipotecario S A"
+        }
+      ],
+      "children": [
+        {
+          "id": "0013000000IkqzpAAB",
+          "name": "Banco Hipotecario S A",
+          "allowance": 950000,
+          "usage": 3,
+          "pct_used": 0.0,
+          "crr": 0.0
         }
       ],
       "sela": false
@@ -469,10 +665,10 @@
     {
       "id": "0010M00001YuH8VQAV",
       "name": "CAJA DE SEGUROS S.A.",
+      "global_company": "ASSICURAZIONI GENERALI SPA",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_03",
-      "aov_band": "$200k-600k",
       "allowance": 250000,
       "usage": 5365,
       "crr": 5.9,
@@ -494,20 +690,21 @@
           "allowance": 250000,
           "usage": 5365,
           "days_remaining": 235,
-          "overage_date": ""
+          "account": "CAJA DE SEGUROS S.A."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0010M00001YtwTbQAJ",
       "name": "YPF S.A 2",
+      "global_company": "GOBIERNO DE LA REPUBLICA ARGENTINA",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_04",
-      "aov_band": "$1M-5M",
-      "allowance": 497300000,
-      "usage": 3098818,
+      "allowance": 518700000,
+      "usage": 3099150,
       "crr": 3.0,
       "pct_used": 0.6,
       "pct_remaining": 99.4,
@@ -515,11 +712,29 @@
       "days_remaining": 598,
       "days_elapsed": 1,
       "overage_date": "",
-      "upsell_usd": 791591,
+      "upsell_usd": 898589,
       "status": "activate",
       "crr_cohort": "Under Consuming",
-      "daily_rate": 3098818,
+      "daily_rate": 3099150,
       "schedules": [
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 20000000,
+          "usage": 0,
+          "days_remaining": 598,
+          "account": "YPF"
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 200000,
+          "usage": 0,
+          "days_remaining": 598,
+          "account": "YPF"
+        },
         {
           "type": "Data Services Credits",
           "start": "",
@@ -527,7 +742,7 @@
           "allowance": 278300000,
           "usage": 1587916,
           "days_remaining": 598,
-          "overage_date": ""
+          "account": "YPF S.A 2"
         },
         {
           "type": "Flex Credits",
@@ -536,7 +751,43 @@
           "allowance": 219000000,
           "usage": 1510902,
           "days_remaining": 598,
-          "overage_date": ""
+          "account": "YPF S.A 2"
+        },
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 1000000,
+          "usage": 0,
+          "days_remaining": 598,
+          "account": "YPF S.A."
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 200000,
+          "usage": 332,
+          "days_remaining": 598,
+          "account": "YPF S.A."
+        }
+      ],
+      "children": [
+        {
+          "id": "0010M00001UV2V8QAL",
+          "name": "YPF",
+          "allowance": 20200000,
+          "usage": 0,
+          "pct_used": 0.0,
+          "crr": 0.0
+        },
+        {
+          "id": "0013000000I3YnKAAV",
+          "name": "YPF S.A.",
+          "allowance": 1200000,
+          "usage": 332,
+          "pct_used": 0.0,
+          "crr": 0.1
         }
       ],
       "sela": true
@@ -544,10 +795,10 @@
     {
       "id": "0013000001GVBNOAA5",
       "name": "Directv Argentina S.R.L.",
+      "global_company": "WERTHEIN INVESTMENT MANAGEMENT GROUP S.A.",
       "country": "AR",
       "owner": "Maria del Carmen Rodriguez",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_02",
-      "aov_band": "$1M-5M",
       "allowance": 931700000,
       "usage": 2075364,
       "crr": 1.9,
@@ -569,7 +820,7 @@
           "allowance": 931500000,
           "usage": 2075364,
           "days_remaining": 966,
-          "overage_date": ""
+          "account": "Directv Argentina S.R.L."
         },
         {
           "type": "Flex Credits",
@@ -578,18 +829,19 @@
           "allowance": 200000,
           "usage": 0,
           "days_remaining": 966,
-          "overage_date": ""
+          "account": "Directv Argentina S.R.L."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000001NXdVAAA1",
       "name": "Payway S.A.U.",
+      "global_company": "Prisma Medios de Pago SA",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_02",
-      "aov_band": "$1M-5M",
       "allowance": 24279167,
       "usage": 149252,
       "crr": 1.5,
@@ -611,7 +863,7 @@
           "allowance": 1979167,
           "usage": 118266,
           "days_remaining": 231,
-          "overage_date": ""
+          "account": "Payway S.A.U."
         },
         {
           "type": "Flex Credits",
@@ -620,18 +872,19 @@
           "allowance": 22300000,
           "usage": 30986,
           "days_remaining": 231,
-          "overage_date": ""
+          "account": "Payway S.A.U."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000000IkoPEAAZ",
       "name": "San Cristobal Seguros",
+      "global_company": "SAN CRISTOBAL SOCIEDAD MUTUAL DE SEGUROS GENERALES",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_03",
-      "aov_band": "$600k-1M",
       "allowance": 2625000,
       "usage": 25907,
       "crr": 1.5,
@@ -653,7 +906,7 @@
           "allowance": 425000,
           "usage": 355,
           "days_remaining": 64,
-          "overage_date": ""
+          "account": "San Cristobal Seguros"
         },
         {
           "type": "Flex Credits",
@@ -662,18 +915,19 @@
           "allowance": 2200000,
           "usage": 25552,
           "days_remaining": 64,
-          "overage_date": ""
+          "account": "San Cristobal Seguros"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000000IkoJ1AAJ",
       "name": "Iplan Networks",
+      "global_company": "Iplan Llc",
       "country": "AR",
       "owner": "Maria del Carmen Rodriguez",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_02",
-      "aov_band": "$100k-200k",
       "allowance": 13500000,
       "usage": 91067,
       "crr": 1.0,
@@ -695,18 +949,19 @@
           "allowance": 13500000,
           "usage": 91067,
           "days_remaining": 125,
-          "overage_date": ""
+          "account": "Iplan Networks"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0010M00001SJS6AQAX",
       "name": "Provincia ART",
+      "global_company": "GOBERNACION DE LA PROVINCIA DE BUENOS AIRES",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_05",
-      "aov_band": "$200k-600k",
       "allowance": 38823963,
       "usage": 285214,
       "crr": 1.0,
@@ -728,7 +983,7 @@
           "allowance": 523963,
           "usage": 6590,
           "days_remaining": 186,
-          "overage_date": ""
+          "account": "Provincia ART"
         },
         {
           "type": "Flex Credits",
@@ -737,60 +992,19 @@
           "allowance": 38300000,
           "usage": 278624,
           "days_remaining": 186,
-          "overage_date": ""
+          "account": "Provincia ART"
         }
       ],
+      "children": [],
       "sela": false
-    },
-    {
-      "id": "0013y00001eDTFKAA4",
-      "name": "Telecom Argentina S.A.",
-      "country": "AR",
-      "owner": "\u2014",
-      "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$0",
-      "allowance": 8775000,
-      "usage": 2864,
-      "crr": 1.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 875,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 0,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 2864,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 6275000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 2500000,
-          "usage": 2864,
-          "days_remaining": 875,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
     },
     {
       "id": "0010M00001XyHDGQA3",
       "name": "SanCor Salud",
+      "global_company": "SanCor Salud",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_06",
-      "aov_band": "$1M-5M",
       "allowance": 370210000,
       "usage": 537054,
       "crr": 0.7,
@@ -812,7 +1026,7 @@
           "allowance": 23910000,
           "usage": 56162,
           "days_remaining": 874,
-          "overage_date": ""
+          "account": "SanCor Salud"
         },
         {
           "type": "Flex Credits",
@@ -821,18 +1035,19 @@
           "allowance": 346300000,
           "usage": 480892,
           "days_remaining": 874,
-          "overage_date": ""
+          "account": "SanCor Salud"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000000326geAAA",
       "name": "Globant LLC",
+      "global_company": "Globant UK",
       "country": "AR",
       "owner": "Eneas Matias Goglino",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_03",
-      "aov_band": "$1M-5M",
       "allowance": 950000,
       "usage": 992,
       "crr": 0.6,
@@ -854,7 +1069,7 @@
           "allowance": 750000,
           "usage": 0,
           "days_remaining": 918,
-          "overage_date": ""
+          "account": "Globant LLC"
         },
         {
           "type": "Flex Credits",
@@ -863,18 +1078,19 @@
           "allowance": 200000,
           "usage": 992,
           "days_remaining": 918,
-          "overage_date": ""
+          "account": "Globant LLC"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000001Kc6AyAAJ",
       "name": "LA ANONIMA - S.A.I.E.P.",
+      "global_company": "S.A. Importadora Y Exportadora De La Patagonia",
       "country": "AR",
       "owner": "Monica Sempertegui",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_07",
-      "aov_band": "$600k-1M",
       "allowance": 250000,
       "usage": 456,
       "crr": 0.4,
@@ -896,18 +1112,19 @@
           "allowance": 250000,
           "usage": 456,
           "days_remaining": 217,
-          "overage_date": ""
+          "account": "LA ANONIMA - S.A.I.E.P."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0010M00001WYEHwQAP",
       "name": "Ual\u00e1",
+      "global_company": "BANCAR TECHNOLOGIES LIMITED",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_04",
-      "aov_band": "$1M-5M",
       "allowance": 146260000,
       "usage": 112290,
       "crr": 0.3,
@@ -929,7 +1146,7 @@
           "allowance": 25060000,
           "usage": 1,
           "days_remaining": 781,
-          "overage_date": ""
+          "account": "Ual\u00e1"
         },
         {
           "type": "Data Services Credits",
@@ -938,7 +1155,7 @@
           "allowance": 500000,
           "usage": 110141,
           "days_remaining": 205,
-          "overage_date": ""
+          "account": "Ual\u00e1"
         },
         {
           "type": "Flex Credits",
@@ -947,7 +1164,7 @@
           "allowance": 120500000,
           "usage": 0,
           "days_remaining": 781,
-          "overage_date": ""
+          "account": "Ual\u00e1"
         },
         {
           "type": "Flex Credits",
@@ -956,18 +1173,19 @@
           "allowance": 200000,
           "usage": 2148,
           "days_remaining": 205,
-          "overage_date": ""
+          "account": "Ual\u00e1"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000000roRAXAA2",
       "name": "Gire S.A",
+      "global_company": "BANCO SANTANDER SA",
       "country": "AR",
       "owner": "Alfredo Gabriel Panciera",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_04",
-      "aov_band": "$200k-600k",
       "allowance": 950000,
       "usage": 154,
       "crr": 0.1,
@@ -989,7 +1207,7 @@
           "allowance": 750000,
           "usage": 0,
           "days_remaining": 293,
-          "overage_date": ""
+          "account": "Gire S.A"
         },
         {
           "type": "Flex Credits",
@@ -998,60 +1216,19 @@
           "allowance": 200000,
           "usage": 154,
           "days_remaining": 293,
-          "overage_date": ""
+          "account": "Gire S.A"
         }
       ],
+      "children": [],
       "sela": false
-    },
-    {
-      "id": "0013000000I3YnKAAV",
-      "name": "YPF S.A.",
-      "country": "AR",
-      "owner": "\u2014",
-      "territory": "LATAM_GRW_ENTR_AR_VERT2_04",
-      "aov_band": "$0",
-      "allowance": 1200000,
-      "usage": 332,
-      "crr": 0.1,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 598,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 5998,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 332,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 1000000,
-          "usage": 0,
-          "days_remaining": 598,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 200000,
-          "usage": 332,
-          "days_remaining": 598,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
     },
     {
       "id": "0010M00001WaxcVQAR",
       "name": "AEROPUERTOS ARGENTINA S.A.",
+      "global_company": "Cedicor S.A.",
       "country": "AR",
       "owner": "Belen Kindrat",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_01",
-      "aov_band": "$600k-1M",
       "allowance": 230766667,
       "usage": 15401,
       "crr": 0.0,
@@ -1073,7 +1250,7 @@
           "allowance": 1812500,
           "usage": 0,
           "days_remaining": 750,
-          "overage_date": ""
+          "account": "AEROPUERTOS ARGENTINA S.A."
         },
         {
           "type": "Data Services Credits",
@@ -1082,7 +1259,7 @@
           "allowance": 250000,
           "usage": 77,
           "days_remaining": 234,
-          "overage_date": ""
+          "account": "AEROPUERTOS ARGENTINA S.A."
         },
         {
           "type": "Data Services Credits",
@@ -1091,7 +1268,7 @@
           "allowance": 10604167,
           "usage": 0,
           "days_remaining": 751,
-          "overage_date": ""
+          "account": "AEROPUERTOS ARGENTINA S.A."
         },
         {
           "type": "Data Services Credits",
@@ -1100,7 +1277,7 @@
           "allowance": 500000,
           "usage": 0,
           "days_remaining": 601,
-          "overage_date": ""
+          "account": "AEROPUERTOS ARGENTINA S.A."
         },
         {
           "type": "Flex Credits",
@@ -1109,7 +1286,7 @@
           "allowance": 200000,
           "usage": 0,
           "days_remaining": 750,
-          "overage_date": ""
+          "account": "AEROPUERTOS ARGENTINA S.A."
         },
         {
           "type": "Flex Credits",
@@ -1118,7 +1295,7 @@
           "allowance": 217200000,
           "usage": 0,
           "days_remaining": 751,
-          "overage_date": ""
+          "account": "AEROPUERTOS ARGENTINA S.A."
         },
         {
           "type": "Flex Credits",
@@ -1127,18 +1304,19 @@
           "allowance": 200000,
           "usage": 15324,
           "days_remaining": 601,
-          "overage_date": ""
+          "account": "AEROPUERTOS ARGENTINA S.A."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0010M00001UV6CPQA1",
       "name": "Avalian",
+      "global_company": "ACA SALUD COOPERATIVA DE PRESTACION DE SERVICIOS MEDICO ASISTENCIALES LIMITADA",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_05",
-      "aov_band": "$600k-1M",
       "allowance": 5500000,
       "usage": 0,
       "crr": 0.0,
@@ -1160,60 +1338,19 @@
           "allowance": 5500000,
           "usage": 0,
           "days_remaining": 248,
-          "overage_date": ""
+          "account": "Avalian"
         }
       ],
-      "sela": false
-    },
-    {
-      "id": "0013000000IkqzpAAB",
-      "name": "Banco Hipotecario S A",
-      "country": "AR",
-      "owner": "Alfredo Gabriel Panciera",
-      "territory": "LATAM_GRW_ENTR_AR_VERT1_04",
-      "aov_band": "$200k-600k",
-      "allowance": 950000,
-      "usage": 3,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 205,
-      "days_elapsed": 160,
-      "overage_date": "",
-      "upsell_usd": 4750,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 0,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 750000,
-          "usage": 3,
-          "days_remaining": 205,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 200000,
-          "usage": 0,
-          "days_remaining": 205,
-          "overage_date": ""
-        }
-      ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000000ZjBNtAAN",
       "name": "Cirion Technologies Solutions, LLC",
+      "global_company": "Cirion Technologies Fiber Networks, Llc",
       "country": "AR",
       "owner": "Maria del Carmen Rodriguez",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_02",
-      "aov_band": "$600k-1M",
       "allowance": 31050000,
       "usage": 0,
       "crr": 0.0,
@@ -1235,7 +1372,7 @@
           "allowance": 1850000,
           "usage": 0,
           "days_remaining": 1055,
-          "overage_date": ""
+          "account": "Cirion Technologies Solutions, LLC"
         },
         {
           "type": "Flex Credits",
@@ -1244,18 +1381,19 @@
           "allowance": 29200000,
           "usage": 0,
           "days_remaining": 1055,
-          "overage_date": ""
+          "account": "Cirion Technologies Solutions, LLC"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013y00001ceCeaAAE",
       "name": "Danone Specialized Nutrition",
+      "global_company": "DANONE",
       "country": "AR",
       "owner": "Monica Sempertegui",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_07",
-      "aov_band": "$100k-200k",
       "allowance": 782700,
       "usage": 1,
       "crr": 0.0,
@@ -1277,18 +1415,19 @@
           "allowance": 782700,
           "usage": 1,
           "days_remaining": 599,
-          "overage_date": ""
+          "account": "Danone Specialized Nutrition"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0010M00001Z0CHqQAN",
       "name": "INVIU SAU",
+      "global_company": "Eba Holding S.A.",
       "country": "AR",
       "owner": "Agustin Schachmann",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_02",
-      "aov_band": "$50k-100k",
       "allowance": 700000,
       "usage": 0,
       "crr": 0.0,
@@ -1310,7 +1449,7 @@
           "allowance": 500000,
           "usage": 0,
           "days_remaining": 600,
-          "overage_date": ""
+          "account": "INVIU SAU"
         },
         {
           "type": "Flex Credits",
@@ -1319,18 +1458,19 @@
           "allowance": 200000,
           "usage": 0,
           "days_remaining": 600,
-          "overage_date": ""
+          "account": "INVIU SAU"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "001ed00000Ij7fkAAB",
       "name": "MEDIFE ASOCIACION CIVIL",
+      "global_company": "Medife Asociacion Civil",
       "country": "AR",
       "owner": "Malena Ornstein",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_06",
-      "aov_band": "$600k-1M",
       "allowance": 450000,
       "usage": 0,
       "crr": 0.0,
@@ -1352,7 +1492,7 @@
           "allowance": 250000,
           "usage": 0,
           "days_remaining": 248,
-          "overage_date": ""
+          "account": "MEDIFE ASOCIACION CIVIL"
         },
         {
           "type": "Flex Credits",
@@ -1361,135 +1501,19 @@
           "allowance": 200000,
           "usage": 0,
           "days_remaining": 248,
-          "overage_date": ""
+          "account": "MEDIFE ASOCIACION CIVIL"
         }
       ],
-      "sela": false
-    },
-    {
-      "id": "001ed00000ZkW7BAAV",
-      "name": "Mercado Libre SELA TAB",
-      "country": "AR",
-      "owner": "Clara Bianchetti",
-      "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$0",
-      "allowance": 3957983334,
-      "usage": 12655,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 571,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 38526472,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 12655,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 2517583334,
-          "usage": 7435,
-          "days_remaining": 571,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 1440400000,
-          "usage": 5220,
-          "days_remaining": 571,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
-    },
-    {
-      "id": "0013y00001cQE4pAAG",
-      "name": "Micro Sistemas S.A.U.",
-      "country": "AR",
-      "owner": "Clara Bianchetti",
-      "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$0",
-      "allowance": 8775000,
-      "usage": 0,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 875,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 0,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 0,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 6275000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 2500000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
-    },
-    {
-      "id": "0013000001CCp8VAAT",
-      "name": "Pan American Energy Llc [Upstream]",
-      "country": "AR",
-      "owner": "Karina de la Vega",
-      "territory": "LATAM_GRW_ENTR_AR_VERT2_04",
-      "aov_band": "$200k-600k",
-      "allowance": 241667,
-      "usage": 0,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 34,
-      "days_elapsed": 331,
-      "overage_date": "",
-      "upsell_usd": 1208,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 0,
-      "schedules": [
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 241667,
-          "usage": 0,
-          "days_remaining": 34,
-          "overage_date": ""
-        }
-      ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0010M00001WIWyTQAX",
       "name": "Ra\u00edzen Argentina S.A.U.",
+      "global_company": "Raizen Argentina S.A.U.",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_04",
-      "aov_band": "$100k-200k",
       "allowance": 1950000,
       "usage": 12,
       "crr": 0.0,
@@ -1511,18 +1535,19 @@
           "allowance": 1950000,
           "usage": 12,
           "days_remaining": 1038,
-          "overage_date": ""
+          "account": "Ra\u00edzen Argentina S.A.U."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0010M00001QkgEKQAZ",
       "name": "Red Link S.A.",
+      "global_company": "Red Link S.A.",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT1_04",
-      "aov_band": "$200k-600k",
       "allowance": 850000,
       "usage": 16,
       "crr": 0.0,
@@ -1544,7 +1569,7 @@
           "allowance": 750000,
           "usage": 16,
           "days_remaining": 145,
-          "overage_date": ""
+          "account": "Red Link S.A."
         },
         {
           "type": "Flex Credits",
@@ -1553,18 +1578,19 @@
           "allowance": 100000,
           "usage": 0,
           "days_remaining": 145,
-          "overage_date": ""
+          "account": "Red Link S.A."
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000001MreUvAAJ",
       "name": "Swiss Medical Group",
+      "global_company": "Swiss Medical Group",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_06",
-      "aov_band": "$200k-600k",
       "allowance": 5700000,
       "usage": 47,
       "crr": 0.0,
@@ -1586,7 +1612,7 @@
           "allowance": 250000,
           "usage": 47,
           "days_remaining": 235,
-          "overage_date": ""
+          "account": "Swiss Medical Group"
         },
         {
           "type": "Data Services Credits",
@@ -1595,7 +1621,7 @@
           "allowance": 5250000,
           "usage": 0,
           "days_remaining": 966,
-          "overage_date": ""
+          "account": "Swiss Medical Group"
         },
         {
           "type": "Flex Credits",
@@ -1604,18 +1630,19 @@
           "allowance": 200000,
           "usage": 0,
           "days_remaining": 966,
-          "overage_date": ""
+          "account": "Swiss Medical Group"
         }
       ],
+      "children": [],
       "sela": false
     },
     {
       "id": "0013000001Msa8jAAB",
       "name": "Telecentro Residencial",
+      "global_company": "TELECENTRO S.A.",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_02",
-      "aov_band": "$600k-1M",
       "allowance": 3500000,
       "usage": 0,
       "crr": 0.0,
@@ -1637,7 +1664,7 @@
           "allowance": 1800000,
           "usage": 0,
           "days_remaining": 966,
-          "overage_date": ""
+          "account": "Telecentro Residencial"
         },
         {
           "type": "Flex Credits",
@@ -1646,220 +1673,20 @@
           "allowance": 1700000,
           "usage": 0,
           "days_remaining": 966,
-          "overage_date": ""
+          "account": "Telecentro Residencial"
         }
       ],
+      "children": [],
       "sela": false
-    },
-    {
-      "id": "001ed00000GPtRaAAL",
-      "name": "Telecom Argentina S.A.",
-      "country": "AR",
-      "owner": "\u2014",
-      "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$0",
-      "allowance": 8975000,
-      "usage": 0,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 875,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 0,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 0,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 6275000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 2700000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
-    },
-    {
-      "id": "001ed00000GR5gkAAD",
-      "name": "Telecom Argentina S.A.",
-      "country": "AR",
-      "owner": "\u2014",
-      "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$0",
-      "allowance": 8775000,
-      "usage": 0,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 875,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 0,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 0,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 6275000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 2500000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
-    },
-    {
-      "id": "0010M00001SJ7JnQAL",
-      "name": "Telecom S.A. - Copado",
-      "country": "AR",
-      "owner": "\u2014",
-      "territory": "LATAM_GRW_ENTR_AR_VERT1_01",
-      "aov_band": "$0",
-      "allowance": 8775000,
-      "usage": 0,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 875,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 0,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 0,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 6275000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 2500000,
-          "usage": 0,
-          "days_remaining": 875,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
-    },
-    {
-      "id": "0010M00001QqvYQQAZ",
-      "name": "Universal Assistance Argentina SA",
-      "country": "AR",
-      "owner": "\u2014",
-      "territory": "LATAM_GRW_ENTR_AR_VERT2_03",
-      "aov_band": "$100k-200k",
-      "allowance": 250900,
-      "usage": 0,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 111,
-      "days_elapsed": 254,
-      "overage_date": "",
-      "upsell_usd": 2509,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 0,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 250900,
-          "usage": 0,
-          "days_remaining": 111,
-          "overage_date": ""
-        }
-      ],
-      "sela": false
-    },
-    {
-      "id": "0010M00001UV2V8QAL",
-      "name": "YPF",
-      "country": "AR",
-      "owner": "\u2014",
-      "territory": "LATAM_GRW_ENTR_AR_VERT2_04",
-      "aov_band": "$0",
-      "allowance": 20200000,
-      "usage": 0,
-      "crr": 0.0,
-      "pct_used": 0.0,
-      "pct_remaining": 100.0,
-      "in_overage": false,
-      "days_remaining": 598,
-      "days_elapsed": 1,
-      "overage_date": "",
-      "upsell_usd": 101000,
-      "status": "activate",
-      "crr_cohort": "Under Consuming",
-      "daily_rate": 0,
-      "schedules": [
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 20000000,
-          "usage": 0,
-          "days_remaining": 598,
-          "overage_date": ""
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 200000,
-          "usage": 0,
-          "days_remaining": 598,
-          "overage_date": ""
-        }
-      ],
-      "sela": true
     },
     {
       "id": "0013000000hJOT0AAO",
       "name": "ZURICH ARGENTINA COMPA\u00d1IA DE SEGUROS S.A.",
+      "global_company": "Zurich Insurance Group AG",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_03",
-      "aov_band": "$1M-5M",
-      "allowance": 10350000,
+      "allowance": 10600900,
       "usage": 37,
       "crr": 0.0,
       "pct_used": 0.0,
@@ -1868,7 +1695,7 @@
       "days_remaining": 935,
       "days_elapsed": 1,
       "overage_date": "",
-      "upsell_usd": 47550,
+      "upsell_usd": 50059,
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 37,
@@ -1877,10 +1704,19 @@
           "type": "Data Services Credits",
           "start": "",
           "end": "",
+          "allowance": 250900,
+          "usage": 0,
+          "days_remaining": 111,
+          "account": "Universal Assistance Argentina SA"
+        },
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
           "allowance": 9150000,
           "usage": 5,
           "days_remaining": 935,
-          "overage_date": ""
+          "account": "ZURICH ARGENTINA COMPA\u00d1IA DE SEGUROS S.A."
         },
         {
           "type": "Flex Credits",
@@ -1889,7 +1725,17 @@
           "allowance": 1200000,
           "usage": 32,
           "days_remaining": 935,
-          "overage_date": ""
+          "account": "ZURICH ARGENTINA COMPA\u00d1IA DE SEGUROS S.A."
+        }
+      ],
+      "children": [
+        {
+          "id": "0010M00001QqvYQQAZ",
+          "name": "Universal Assistance Argentina SA",
+          "allowance": 250900,
+          "usage": 0,
+          "pct_used": 0.0,
+          "crr": 0.0
         }
       ],
       "sela": false
