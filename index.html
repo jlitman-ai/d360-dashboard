@@ -169,12 +169,27 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
 
   <div class="csec">
     <div class="ctop">
-      <div><div class="ctitle">Account Prioritization Matrix</div><div class="csub">X = CRR% · Y = Upsell Potential ($) · Size = allowance × CRR · Click to open account</div></div>
+      <div><div class="ctitle">Account Prioritization Matrix</div><div class="csub">X = CRR% · Click to open account · Use dropdowns to change axes</div></div>
       <div class="legend">
         <div class="leg"><div class="dot" style="background:#c23934"></div>Growth Opp (CRR&gt;80%)</div>
         <div class="leg"><div class="dot" style="background:#c07e00"></div>On Track (20–80%)</div>
         <div class="leg"><div class="dot" style="background:#9eb5c8"></div>Activate (&lt;20%)</div>
       </div>
+    </div>
+    <div style="display:flex;gap:16px;margin-bottom:10px;align-items:center">
+      <div style="font-size:11px;font-weight:700;color:#9aabb8;text-transform:uppercase;letter-spacing:.6px">Y axis:</div>
+      <select id="yaxis-sel" onchange="rebuildBubble(filtered())" style="font-size:12px;padding:4px 8px;border:1.5px solid #dde5ed;border-radius:6px;outline:none;background:white">
+        <option value="allowance">Allowance (M credits)</option>
+        <option value="upsell">Upsell Potential ($K)</option>
+        <option value="pct_used">% Credits Used</option>
+        <option value="days_remaining">Days Remaining</option>
+      </select>
+      <div style="font-size:11px;font-weight:700;color:#9aabb8;text-transform:uppercase;letter-spacing:.6px">Size:</div>
+      <select id="size-sel" onchange="rebuildBubble(filtered())" style="font-size:12px;padding:4px 8px;border:1.5px solid #dde5ed;border-radius:6px;outline:none;background:white">
+        <option value="allowance">Allowance</option>
+        <option value="upsell">Upsell Potential</option>
+        <option value="usage">Credits Used</option>
+      </select>
     </div>
     <div class="cwrap"><canvas id="bChart"></canvas></div>
   </div>
@@ -467,15 +482,27 @@ function rebuildBubble(data) {
     }
   });
 
+  const yMode = document.getElementById('yaxis-sel')?.value || 'allowance';
+  const sMode = document.getElementById('size-sel')?.value || 'allowance';
+
+  const yVal = (acc) => {
+    if (yMode === 'upsell') return (acc.upsell_usd||0)/1000;
+    if (yMode === 'pct_used') return acc.pct_used;
+    if (yMode === 'days_remaining') return acc.days_remaining;
+    return acc.allowance/1e6; // default: allowance
+  };
+  const sVal = (acc) => {
+    if (sMode === 'upsell') return Math.sqrt(Math.max(acc.upsell_usd||1, 1)/500)*2+5;
+    if (sMode === 'usage') return Math.sqrt(acc.usage/1e6)*1.4+5;
+    return Math.sqrt(acc.allowance/1e6)*1.3; // default: allowance
+  };
+  const yLabel = {allowance:'Allowance (M credits)', upsell:'Upsell Potential ($K)', pct_used:'% Credits Used', days_remaining:'Days Remaining'}[yMode];
+
   const datasets = Object.values(bubbleMap).map(b => {
     const acc = b._primary || b._accs[0];
-    // Y = Potential CCR (upsell $K) — weighted by actual usage vs allowance
-    const upsell = acc.upsell_usd || 0;
-    // Size = weighted score: big allowance & high CRR = bigger bubble
-    const score = Math.sqrt((acc.allowance/1e6) * Math.max(acc.crr, 1));
     return {
       label: b.name,
-      data: [{x:Math.min(b.crr,280), y:upsell/1000, r:Math.max(7,Math.min(32,score*0.8+5))}],
+      data: [{x:Math.min(b.crr,280), y:yVal(acc), r:Math.max(7,Math.min(32,sVal(acc)))}],
       backgroundColor: cols[b.status]+'bb',
       borderColor: cols[b.status],
       borderWidth: 2,
@@ -505,7 +532,7 @@ function rebuildBubble(data) {
       },
       scales:{
         x:{title:{display:true,text:'CRR (%)',font:{weight:'700'}},grid:{color:'#f0f4f8'},ticks:{callback:v=>v+'%'},min:0},
-        y:{title:{display:true,text:'Upsell Potential (USD $K)',font:{weight:'700'}},grid:{color:'#f0f4f8'},ticks:{callback:v=>'$'+v+'K'}}
+        y:{title:{display:true,text:yLabel,font:{weight:'700'}},grid:{color:'#f0f4f8'},ticks:{callback:v=>yMode==='allowance'?v+'M':yMode==='upsell'?'$'+v+'K':yMode==='pct_used'?v+'%':v+'d'}}
       }
     }
   });
