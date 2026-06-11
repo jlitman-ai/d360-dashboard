@@ -751,50 +751,68 @@ function buildDailyChart(acc){
 function buildProjChart(acc){
   if(projChart)projChart.destroy();
   const ctx=document.getElementById('projC').getContext('2d');
-
-  // Use real 90-day data if available, otherwise fall back to daily_rate
   const raw=DAILY_DATA[acc.id];
-  const labels=[],actual=[],proj=[];
 
-  if(raw && raw.dates && raw.series.DSC){
-    // Plot real historical data
+  // Show cumulative consumption vs allowance over contract lifetime
+  // X = months from contract start to end
+  // Actual line uses real data; projected continues at current avg rate
+  const today=new Date();
+  const labels=[], actual=[], proj=[], allowanceLine=[];
+
+  const dr=acc.daily_rate;
+  const totalDays=acc.days_elapsed+acc.days_remaining;
+
+  // Build points: every ~14 days across the full contract
+  const step=Math.max(7,Math.ceil(totalDays/16));
+
+  // Real data lookup by day offset
+  const realByOffset={};
+  if(raw?.dates){
+    const startDaysAgo=acc.days_elapsed;
     raw.dates.forEach((d,i)=>{
-      labels.push(d);
-      actual.push(raw.series.DSC[i]);
-      proj.push(null);
+      // approximate offset from today
+      const parts=d.split('-');
+      const dt2=new Date(today.getFullYear(),parseInt(parts[0])-1,parseInt(parts[1]));
+      const diff=Math.round((dt2-today)/(1000*60*60*24));
+      realByOffset[diff]=raw.series.DSC[i];
     });
-    // Add projection from last actual point
-    const lastActual=raw.series.DSC[raw.series.DSC.length-1];
-    const dr=acc.daily_rate;
-    const projDays=Math.min(acc.days_remaining, 90);
-    const step=Math.max(1,Math.ceil(projDays/8));
-    for(let d=step;d<=projDays;d+=step){
-      const dt=new Date();dt.setDate(dt.getDate()+d);
-      labels.push(dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}));
+  }
+
+  // Cumulative from start of contract
+  let cumulative=0;
+  for(let d=-acc.days_elapsed;d<=acc.days_remaining;d+=step){
+    const dt2=new Date(today);dt2.setDate(dt2.getDate()+d);
+    labels.push(dt2.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit'}));
+    allowanceLine.push(acc.allowance);
+
+    if(d<=0){
+      // Use real cumulative if possible, else estimate
+      cumulative=Math.round(acc.usage+dr*d);
+      actual.push(Math.max(0,cumulative));
+      proj.push(null);
+    } else {
       actual.push(null);
-      proj.push(Math.round(dr));
-    }
-  } else {
-    // Fallback: synthetic from daily_rate
-    const dr=acc.daily_rate,total=acc.days_elapsed+acc.days_remaining;
-    const step=Math.max(1,Math.ceil(total/14));
-    for(let d=-Math.min(acc.days_elapsed,90);d<=acc.days_remaining;d+=step){
-      const dt=new Date();dt.setDate(dt.getDate()+d);
-      labels.push(dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}));
-      const v=Math.round(acc.usage+dr*d);
-      if(d<=0){actual.push(Math.max(0,v));proj.push(null);}
-      else{actual.push(null);proj.push(Math.round(dr));}
+      const projVal=Math.round(acc.usage+dr*d);
+      proj.push(Math.max(0,projVal));
     }
   }
 
-  // Add avg line
-  const avgLine=labels.map(()=>acc.daily_rate);
-
-  projChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[
-    {label:'Daily DSC',data:actual,backgroundColor:'#0176d388',borderColor:'#0176d3',borderWidth:1,type:'bar'},
-    {label:'Projected (avg)',data:proj,backgroundColor:'#c07e0044',borderColor:'#c07e00',borderWidth:1,type:'bar'},
-    {label:'90d Avg',data:avgLine,borderColor:'#c23934',borderDash:[4,3],borderWidth:1.5,pointRadius:0,backgroundColor:'transparent',type:'line'}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{y:{ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'}},x:{grid:{display:false},ticks:{font:{size:9},maxTicksLimit:12}}}}});
+  projChart=new Chart(ctx,{
+    type:'line',
+    data:{labels,datasets:[
+      {label:'Cumulative DSC Used',data:actual,borderColor:'#0176d3',backgroundColor:'#0176d318',fill:true,tension:.3,pointRadius:2,borderWidth:2},
+      {label:'Projected (current rate)',data:proj,borderColor:'#c07e00',borderDash:[6,4],backgroundColor:'transparent',tension:.3,pointRadius:1,borderWidth:1.5},
+      {label:'Contract Allowance',data:allowanceLine,borderColor:'#c23934',borderDash:[3,3],borderWidth:1.5,pointRadius:0,backgroundColor:'transparent'}
+    ]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},
+      scales:{
+        y:{ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'},title:{display:true,text:'Cumulative Credits',font:{size:10}}},
+        x:{grid:{display:false},ticks:{font:{size:9},maxTicksLimit:10}}
+      }
+    }
+  });
 }
 
 function updateSim(){
