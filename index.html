@@ -278,13 +278,18 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
 
     <!-- DAILY CHART -->
     <div class="dc full">
-      <h4>Daily Consumption — Last 30 Days</h4>
+      <h4>Daily Consumption — Last 90 Days (DSC)</h4>
       <div class="dtabs">
         <button class="dtab active" onclick="setDailyMode('stacked',this)">Stacked</button>
         <button class="dtab" onclick="setDailyMode('line',this)">Line</button>
         <button class="dtab" onclick="setDailyMode('cumul',this)">Cumulative</button>
       </div>
       <div style="height:220px"><canvas id="dailyC"></canvas></div>
+      <div id="slack-context" style="display:none;margin-top:12px;background:#f0f6ff;border-left:3px solid #0176d3;border-radius:6px;padding:10px 14px">
+        <div style="font-size:10px;font-weight:700;color:#0176d3;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px">💬 Slack Context</div>
+        <div id="slack-context-text" style="font-size:12px;color:#1a2332;line-height:1.5"></div>
+        <a id="slack-context-link" href="#" target="_blank" style="font-size:11px;color:#0176d3;text-decoration:none;margin-top:5px;display:inline-block">→ Ver en Slack</a>
+      </div>
     </div>
 
     <!-- PROJECTION -->
@@ -692,12 +697,30 @@ function buildContractsTable(acc){
 }
 
 async function loadAndBuildDailyChart(acc){
-  if(DAILY_DATA[acc.id]){buildDailyChart(acc);return;}
-  try{
-    const res=await fetch(`daily/${acc.id}.json?t=${Date.now()}`);
-    if(res.ok){DAILY_DATA[acc.id]=await res.json();}
-  }catch(e){}
+  // Hide Slack context by default
+  document.getElementById('slack-context').style.display='none';
+
+  if(!DAILY_DATA[acc.id]){
+    try{
+      const res=await fetch(`daily/${acc.id}.json?t=${Date.now()}`);
+      if(res.ok) DAILY_DATA[acc.id]=await res.json();
+    }catch(e){}
+  }
   buildDailyChart(acc);
+
+  // Show Slack context if available
+  const raw=DAILY_DATA[acc.id];
+  if(raw?.slack_context){
+    document.getElementById('slack-context').style.display='block';
+    document.getElementById('slack-context-text').textContent=raw.slack_context;
+    if(raw.slack_url){
+      const link=document.getElementById('slack-context-link');
+      link.href=raw.slack_url;
+      link.style.display='inline-block';
+    } else {
+      document.getElementById('slack-context-link').style.display='none';
+    }
+  }
 }
 
 function buildDailyChart(acc){
