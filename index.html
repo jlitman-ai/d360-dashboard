@@ -117,14 +117,11 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
 
 <div class="toolbar">
   <button class="nb active" onclick="showView('overview')">Portfolio Overview</button>
+  <button class="nb" onclick="showView('trends')">Trends</button>
   <button class="nb" onclick="showView('detail')" id="dtab" style="display:none">▸ Account Detail</button>
   <div class="nsep"></div>
   <div class="ctabs">
-    <button class="ct active" onclick="setCountry('ALL',this)">🌎 All</button>
-    <button class="ct ar" onclick="setCountry('AR',this)">🇦🇷 AR</button>
-    <button class="ct cl" onclick="setCountry('CL',this)">🇨🇱 CL</button>
-    <button class="ct pe" onclick="setCountry('PE',this)">🇵🇪 PE</button>
-    <button class="ct" onclick="setCountry('OTHER',this)">🌐 Other</button>
+    <button class="ct ar active" onclick="setCountry('AR',this)">🇦🇷 Argentina</button>
   </div>
 </div>
 
@@ -172,7 +169,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
 
   <div class="csec">
     <div class="ctop">
-      <div><div class="ctitle">Account Prioritization Matrix</div><div class="csub">X = CRR% · Y = Allowance (M credits) · Size = Allowance · Click to open account</div></div>
+      <div><div class="ctitle">Account Prioritization Matrix</div><div class="csub">X = CRR% · Y = Upsell Potential ($) · Size = allowance × CRR · Click to open account</div></div>
       <div class="legend">
         <div class="leg"><div class="dot" style="background:#c23934"></div>Growth Opp (CRR&gt;80%)</div>
         <div class="leg"><div class="dot" style="background:#c07e00"></div>On Track (20–80%)</div>
@@ -188,22 +185,43 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
     </div>
     <table>
       <thead><tr>
-        <th onclick="srt('name')">Account Name</th>
-        <th onclick="srt('id')">Account ID</th>
-        <th>Entitlement</th>
-        <th>Start Date</th>
-        <th>End Date</th>
+        <th onclick="srt('name')">Account</th>
+        <th onclick="srt('owner')">AE Owner</th>
         <th onclick="srt('crr')">CRR%</th>
+        <th onclick="srt('crr_cohort')">Cohort</th>
+        <th onclick="srt('pct_used')">Used</th>
+        <th onclick="srt('pct_remaining')">Left</th>
         <th onclick="srt('allowance')">Allowance</th>
-        <th onclick="srt('pct_used')">Used%</th>
-        <th onclick="srt('pct_remaining')">Left%</th>
         <th onclick="srt('upsell_usd')">Upsell $</th>
         <th onclick="srt('days_remaining')">Days Left</th>
         <th>SELA</th>
-        <th onclick="srt('owner')">AE Owner</th>
         <th>Status</th>
       </tr></thead>
       <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TRENDS -->
+<div id="view-trends" class="view">
+  <div style="padding:18px 32px 0;display:flex;align-items:center;gap:12px">
+    <div style="font-size:15px;font-weight:800;color:#032d60">CRR Trend — Last 2 Weeks</div>
+    <div id="trend-updated" style="font-size:11px;color:#9aabb8"></div>
+  </div>
+  <div style="padding:14px 32px 32px">
+    <table id="trend-table" style="width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+      <thead>
+        <tr style="background:#f8fafc">
+          <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Account</th>
+          <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">AE Owner</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Week 1 (May 28–Jun 3)</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Week 2 (Jun 4–Jun 8)</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Δ Week</th>
+          <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Trend</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">CRR%</th>
+        </tr>
+      </thead>
+      <tbody id="trend-tbody"></tbody>
     </table>
   </div>
 </div>
@@ -282,9 +300,11 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
 // ═══════════════════════════════════════════════════════════════════════
 let ACCOUNTS = [];
 let DAILY_DATA = {};
-let country = 'ALL', sortKey = 'crr', sortDir = -1, searchQ = '';
+let country = 'AR', sortKey = 'crr', sortDir = -1, searchQ = '';
 let fOwner = 'all', fCohort = 'all', fCred = 'all', fSela = 'all';
 let bubChart, projChart, dailyChart;
+
+let PAST_ACCOUNTS = [];
 
 async function loadData() {
   try {
@@ -294,8 +314,28 @@ async function loadData() {
     document.getElementById('hdate').textContent = json.updated;
     populateOwnerFilter();
     render();
+    // Build trends from w1/w2 data already in data.json
+    buildTrendsTable();
   } catch(e) {
-    document.getElementById('tbody').innerHTML = '<tr><td colspan="13" style="text-align:center;padding:40px;color:#c23934">Error loading data.json — run the update script first.</td></tr>';
+    document.getElementById('tbody').innerHTML = '<tr><td colspan="11" style="text-align:center;padding:40px;color:#c23934">Error loading data.json</td></tr>';
+  }
+}
+
+async function loadPastSnapshot() {
+  // Try to find most recent snapshot other than today
+  const today = new Date().toISOString().split('T')[0];
+  const twoWeeksAgo = new Date(Date.now() - 14*24*60*60*1000).toISOString().split('T')[0];
+  for (const dt of [twoWeeksAgo, '2026-05-28']) {
+    try {
+      const res = await fetch(`snapshots/${dt}.json?t=${Date.now()}`);
+      if (res.ok) {
+        const json = await res.json();
+        PAST_ACCOUNTS = json.accounts || [];
+        document.getElementById('trend-updated').textContent = `Comparing ${json.updated} → ${today}`;
+        buildTrendsTable();
+        return;
+      }
+    } catch(e) {}
   }
 }
 
@@ -427,15 +467,22 @@ function rebuildBubble(data) {
     }
   });
 
-  const datasets = Object.values(bubbleMap).map(b => ({
-    label: b.name,
-    data: [{x:Math.min(b.crr,280), y:b.allowance/1e6, r:Math.max(7,Math.min(28,Math.sqrt(b.allowance/1e6)*1.3))}],
-    backgroundColor: cols[b.status]+'bb',
-    borderColor: cols[b.status],
-    borderWidth: 2,
-    _acc: b._primary || b._accs[0],
-    _accs: b._accs
-  }));
+  const datasets = Object.values(bubbleMap).map(b => {
+    const acc = b._primary || b._accs[0];
+    // Y = Potential CCR (upsell $K) — weighted by actual usage vs allowance
+    const upsell = acc.upsell_usd || 0;
+    // Size = weighted score: big allowance & high CRR = bigger bubble
+    const score = Math.sqrt((acc.allowance/1e6) * Math.max(acc.crr, 1));
+    return {
+      label: b.name,
+      data: [{x:Math.min(b.crr,280), y:upsell/1000, r:Math.max(7,Math.min(32,score*0.8+5))}],
+      backgroundColor: cols[b.status]+'bb',
+      borderColor: cols[b.status],
+      borderWidth: 2,
+      _acc: acc,
+      _accs: b._accs
+    };
+  });
   bubChart = new Chart(ctx, {
     type:'bubble', data:{datasets},
     plugins:[quadrantPlugin],
@@ -451,14 +498,14 @@ function rebuildBubble(data) {
         legend:{display:false},
         tooltip:{callbacks:{label:c=>{
           const a=c.dataset._acc;
-          const r=[`${a.name} (${a.country})`,`CRR: ${a.crr}%`,`Cohort: ${a.crr_cohort}`,`Owner: ${a.owner}`,`Allowance: ${fmtM(a.allowance)}`,`Used: ${a.pct_used}%`];
+          const r=[`${a.name}`,`CRR: ${a.crr}% · ${a.crr_cohort}`,`Owner: ${a.owner}`,`Allowance: ${fmtM(a.allowance)} · Used: ${a.pct_used}%`,`Upsell Potential: $${fmt(a.upsell_usd)}`];
           if(a.upsell_usd>0) r.push(`Upsell: $${fmt(a.upsell_usd)}`);
           return r;
         }}}
       },
       scales:{
         x:{title:{display:true,text:'CRR (%)',font:{weight:'700'}},grid:{color:'#f0f4f8'},ticks:{callback:v=>v+'%'},min:0},
-        y:{title:{display:true,text:'Allowance (M credits)',font:{weight:'700'}},grid:{color:'#f0f4f8'},ticks:{callback:v=>v+'M'}}
+        y:{title:{display:true,text:'Upsell Potential (USD $K)',font:{weight:'700'}},grid:{color:'#f0f4f8'},ticks:{callback:v=>'$'+v+'K'}}
       }
     }
   });
@@ -479,126 +526,28 @@ function getSorted(data) {
 function srt(k){ if(sortKey===k) sortDir*=-1; else{sortKey=k;sortDir=-1;} buildTable(getSorted(filtered())); }
 
 function buildTable(data) {
-  document.getElementById('tcnt').textContent = `(${data.length} accounts, ${data.reduce((s,a)=>s+(a.schedules||[]).length,0)} entitlements)`;
+  document.getElementById('tcnt').textContent = `(${data.length})`;
   const sB={growth:'<span class="badge bg">🔴 Growth</span>',track:'<span class="badge bt">🟡 On Track</span>',activate:'<span class="badge ba">⚪ Activate</span>'};
   const tbody = document.getElementById('tbody');
   tbody.textContent = '';
-
   data.forEach(a => {
-    const schedules = (a.schedules||[]);
+    const tr = document.createElement('tr');
+    tr.style.cursor = 'pointer';
+    tr.addEventListener('click', () => openDetail(a));
     const crrColor = a.crr>80?'#c23934':a.crr>20?'#c07e00':'#7a8b9a';
-    const rowspan = schedules.length || 1;
-
-    schedules.forEach((s, idx) => {
-      const tr = document.createElement('tr');
-      tr.style.cursor = 'pointer';
-      tr.addEventListener('click', () => openDetail(a));
-      // Alternate shading per account group
-      tr.style.background = idx % 2 === 1 ? '#fafbfc' : '';
-
-      const sPct = s.allowance > 0 ? Math.round(s.usage / s.allowance * 100) : 0;
-      const sRem = s.allowance > 0 ? Math.round((s.allowance - s.usage) / s.allowance * 100) : 100;
-      const sColor = sPct >= 100 ? '#c23934' : sPct >= 80 ? '#c07e00' : '#5a6b7c';
-
-      if (idx === 0) {
-        // Account name cell spans all schedule rows
-        const tdName = document.createElement('td');
-        tdName.rowSpan = rowspan;
-        tdName.style.cssText = 'font-weight:800;color:#032d60;font-size:12px;vertical-align:top;padding-top:12px;border-right:2px solid #eef2f7';
-        tdName.textContent = a.name;
-        tr.appendChild(tdName);
-
-        const tdId = document.createElement('td');
-        tdId.rowSpan = rowspan;
-        tdId.style.cssText = 'font-size:10px;color:#9aabb8;vertical-align:top;padding-top:12px;border-right:1px solid #eef2f7';
-        tdId.textContent = a.id;
-        tr.appendChild(tdId);
-      }
-
-      // Entitlement type
-      const tdEnt = document.createElement('td');
-      tdEnt.style.cssText = 'font-size:11px;color:#5a6b7c;font-weight:600';
-      tdEnt.textContent = s.type === 'Data Services Credits' ? 'Data Services Credits' : 'Flex Credits';
-      tr.appendChild(tdEnt);
-
-      // Start / End
-      const tdStart = document.createElement('td');
-      tdStart.style.cssText = 'font-size:11px;color:#7a8b9a';
-      tdStart.textContent = s.start;
-      tr.appendChild(tdStart);
-
-      const tdEnd = document.createElement('td');
-      tdEnd.style.cssText = 'font-size:11px;color:#7a8b9a';
-      tdEnd.textContent = s.end;
-      tr.appendChild(tdEnd);
-
-      if (idx === 0) {
-        // CRR spans all rows
-        const tdCrr = document.createElement('td');
-        tdCrr.rowSpan = rowspan;
-        tdCrr.style.cssText = 'vertical-align:middle;border-right:1px solid #eef2f7';
-        tdCrr.innerHTML = `<div class="bwrap"><div class="bbg"><div class="bfill" style="width:${Math.min(a.crr/280*100,100)}%;background:${crrColor}"></div></div><span style="font-weight:800;font-size:12px;color:${crrColor}">${a.crr}%</span></div>`;
-        tr.appendChild(tdCrr);
-      }
-
-      // Allowance per schedule
-      const tdAllow = document.createElement('td');
-      tdAllow.style.cssText = 'font-size:11px;font-weight:700;color:#032d60';
-      tdAllow.textContent = fmtM(s.allowance);
-      tr.appendChild(tdAllow);
-
-      // Used %
-      const tdUsed = document.createElement('td');
-      tdUsed.style.cssText = `font-size:11px;color:${sColor}`;
-      tdUsed.textContent = sPct + '%';
-      tr.appendChild(tdUsed);
-
-      // Left %
-      const tdRem = document.createElement('td');
-      tdRem.style.cssText = `font-size:11px;font-weight:700;color:${sRem<20?'#c23934':sRem<50?'#c07e00':'#027e46'}`;
-      tdRem.textContent = sRem + '%';
-      tr.appendChild(tdRem);
-
-      if (idx === 0) {
-        // Upsell, days, SELA, owner, status span all rows
-        const tdUp = document.createElement('td');
-        tdUp.rowSpan = rowspan;
-        tdUp.style.cssText = `font-weight:800;color:${a.upsell_usd>0?'#027e46':'#b0bfc9'};vertical-align:middle`;
-        tdUp.textContent = a.upsell_usd > 0 ? '$'+fmt(a.upsell_usd) : '—';
-        tr.appendChild(tdUp);
-
-        const tdDays = document.createElement('td');
-        tdDays.rowSpan = rowspan;
-        tdDays.style.cssText = `font-weight:700;color:${a.days_remaining<60?'#c23934':'#032d60'};vertical-align:middle`;
-        tdDays.textContent = a.days_remaining + 'd';
-        tr.appendChild(tdDays);
-
-        const tdSela = document.createElement('td');
-        tdSela.rowSpan = rowspan;
-        tdSela.style.cssText = 'vertical-align:middle';
-        tdSela.innerHTML = a.sela ? '<span class="bsela">SELA</span>' : '<span style="color:#b0bfc9;font-size:10px">—</span>';
-        tr.appendChild(tdSela);
-
-        const tdOwner = document.createElement('td');
-        tdOwner.rowSpan = rowspan;
-        tdOwner.style.cssText = 'font-size:11px;color:#5a6b7c;vertical-align:middle';
-        tdOwner.textContent = a.owner;
-        tr.appendChild(tdOwner);
-
-        const tdStatus = document.createElement('td');
-        tdStatus.rowSpan = rowspan;
-        tdStatus.style.cssText = 'vertical-align:middle';
-        tdStatus.innerHTML = sB[a.status];
-        tr.appendChild(tdStatus);
-      }
-
-      tbody.appendChild(tr);
-    });
-
-    // Separator row between accounts
-    const sep = document.createElement('tr');
-    sep.innerHTML = `<td colspan="14" style="padding:0;border-bottom:2px solid #eef2f7"></td>`;
-    tbody.appendChild(sep);
+    tr.innerHTML = `
+      <td><div style="font-weight:800;color:#032d60;font-size:12px">${esc(a.name)}</div></td>
+      <td style="font-size:11px;color:#5a6b7c">${esc(a.owner)}</td>
+      <td><div class="bwrap"><div class="bbg"><div class="bfill" style="width:${Math.min(a.crr/280*100,100)}%;background:${crrColor}"></div></div><span style="font-weight:800;font-size:12px;color:${crrColor}">${a.crr}%</span></div></td>
+      <td style="${COHORT_STYLE[a.crr_cohort]||''};font-size:11px">${a.crr_cohort}</td>
+      <td style="font-size:12px">${a.pct_used}%</td>
+      <td style="font-weight:700;font-size:12px;color:${a.pct_remaining<20?'#c23934':a.pct_remaining<50?'#c07e00':'#027e46'}">${a.pct_remaining}%</td>
+      <td style="font-size:12px">${fmtM(a.allowance)}</td>
+      <td style="font-weight:800;font-size:12px;color:${a.upsell_usd>0?'#027e46':'#b0bfc9'}">${a.upsell_usd>0?'$'+fmt(a.upsell_usd):'—'}</td>
+      <td style="font-weight:700;font-size:12px;color:${a.days_remaining<60?'#c23934':'#032d60'}">${a.days_remaining}d</td>
+      <td>${a.sela?'<span class="bsela">SELA</span>':'<span style="color:#b0bfc9;font-size:10px">—</span>'}</td>
+      <td>${sB[a.status]}</td>`;
+    tbody.appendChild(tr);
   });
 }
 
@@ -778,6 +727,60 @@ function updateSim(){
   const nd=new Date();nd.setDate(nd.getDate()+Math.max(0,xDays));
   document.getElementById('simd').textContent=nd.toLocaleDateString('en-US',{month:'short',year:'numeric'});
   document.getElementById('simm').textContent=Math.max(0,Math.round(xDays/30))+'mo';
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// TRENDS
+// ═══════════════════════════════════════════════════════════════════════
+function buildTrendsTable() {
+  const tbody = document.getElementById('trend-tbody');
+  if (!tbody) return;
+  tbody.textContent = '';
+
+  document.getElementById('trend-updated').textContent = 'Week May 28–Jun 3 vs Jun 4–Jun 8 · DSC credits/day';
+
+  const data = ACCOUNTS.filter(a => a.country === 'AR' && a.w1_daily_avg != null)
+    .sort((a,b) => {
+      const at = a.weekly_trend_pct ?? 0, bt = b.weekly_trend_pct ?? 0;
+      return Math.abs(bt) - Math.abs(at);
+    });
+
+  const tdStyle = 'padding:10px 14px;font-size:12px';
+  data.forEach(a => {
+    const tr = document.createElement('tr');
+    tr.style.cssText = 'border-bottom:1px solid #f0f4f8;cursor:pointer';
+    tr.addEventListener('click', () => openDetail(a));
+
+    const tp = a.weekly_trend_pct;
+    const trendColor = tp === null ? '#9aabb8'
+      : tp > 20 ? '#c23934' : tp > 5 ? '#c07e00'
+      : tp < -20 ? '#027e46' : tp < -5 ? '#5a6b7c' : '#9aabb8';
+    const trendIcon = tp === null ? '→ No data'
+      : tp > 20 ? '🔴 Accelerating ↑'
+      : tp > 5 ? '↑ Growing'
+      : tp < -20 ? '🟢 Slowing ↓'
+      : tp < -5 ? '↓ Decreasing'
+      : '→ Stable';
+    const tpStr = tp !== null
+      ? `<span style="font-weight:800;color:${trendColor}">${tp>0?'+':''}${tp}%</span>`
+      : '—';
+
+    tr.innerHTML = `
+      <td style="${tdStyle};font-weight:800;color:#032d60">${esc(a.name)}</td>
+      <td style="${tdStyle};color:#5a6b7c">${esc(a.owner)}</td>
+      <td style="${tdStyle};text-align:right;color:#9aabb8">${a.w1_daily_avg != null ? fmtM(a.w1_daily_avg)+'/d' : '—'}</td>
+      <td style="${tdStyle};text-align:right;font-weight:700;color:#032d60">${a.w2_daily_avg != null ? fmtM(a.w2_daily_avg)+'/d' : '—'}</td>
+      <td style="${tdStyle};text-align:right">${tpStr}</td>
+      <td style="${tdStyle};font-weight:700;color:${trendColor}">${trendIcon}</td>
+      <td style="${tdStyle};text-align:right;font-weight:700;color:#032d60">${a.crr}%</td>`;
+    tbody.appendChild(tr);
+  });
+
+  if (data.length === 0) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td colspan="7" style="padding:32px;text-align:center;color:#9aabb8">No weekly trend data available</td>';
+    tbody.appendChild(tr);
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════

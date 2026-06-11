@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-11",
+  "updated": "2026-05-28",
   "accounts": [
     {
       "id": "0013000000rpjd2AAA",
@@ -8,9 +8,9 @@
       "owner": "Malena Ornstein",
       "territory": "",
       "allowance": 65600000,
-      "usage": 53861226,
-      "crr": 179.1,
-      "pct_used": 82.1,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 17.9,
       "in_overage": false,
       "days_remaining": 398,
@@ -40,10 +40,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000rpjd2AAA",
-      "w1_daily_avg": 446810,
-      "w2_daily_avg": 46962,
-      "weekly_trend_pct": -89.5
+      "bubble_group": "0013000000rpjd2AAA"
     },
     {
       "id": "0013000001GXGozAAH",
@@ -52,9 +49,9 @@
       "owner": "Karina de la Vega",
       "territory": "",
       "allowance": 89299801,
-      "usage": 52998364,
-      "crr": 133.1,
-      "pct_used": 59.3,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 40.7,
       "in_overage": false,
       "days_remaining": 917,
@@ -108,10 +105,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000001GXGozAAH",
-      "w1_daily_avg": 146272,
-      "w2_daily_avg": 145854,
-      "weekly_trend_pct": -0.3
+      "bubble_group": "0013000001GXGozAAH"
     },
     {
       "id": "0013000001CCpybAAD",
@@ -120,9 +114,9 @@
       "owner": "Agustin Schachmann",
       "territory": "",
       "allowance": 9392200000,
-      "usage": 795084925,
-      "crr": 99.5,
-      "pct_used": 8.5,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 91.5,
       "in_overage": false,
       "days_remaining": 1331,
@@ -152,10 +146,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000001CCpybAAD",
-      "w1_daily_avg": 6916158,
-      "w2_daily_avg": 4534494,
-      "weekly_trend_pct": -34.4
+      "bubble_group": "0013000001CCpybAAD"
     },
     {
       "id": "0013000000Boo13AAB",
@@ -164,9 +155,9 @@
       "owner": "Clara Bianchetti",
       "territory": "",
       "allowance": 10585057752,
-      "usage": 255841867,
-      "crr": 62.5,
-      "pct_used": 2.4,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 97.6,
       "in_overage": false,
       "days_remaining": 875,
@@ -220,10 +211,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "0013000000Boo13AAB",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000000Boo13AAB"
     },
     {
       "id": "0013000000LjCTqAAN",
@@ -232,9 +220,9 @@
       "owner": "Clara Bianchetti",
       "territory": "",
       "allowance": 84204020,
-      "usage": 13776152,
-      "crr": 54.6,
-      "pct_used": 16.4,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 83.6,
       "in_overage": false,
       "days_remaining": 521,
@@ -296,10 +284,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000LjCTqAAN",
-      "w1_daily_avg": 51015,
-      "w2_daily_avg": 936,
-      "weekly_trend_pct": -98.2
+      "bubble_group": "0013000000LjCTqAAN"
     },
     {
       "id": "0013000000hItxDAAS",
@@ -308,9 +293,9 @@
       "owner": "Belen Kindrat",
       "territory": "",
       "allowance": 140088464,
-      "usage": 34260149,
-      "crr": 44.9,
-      "pct_used": 24.5,
+      "usage": 27504631,
+      "crr": 125.7,
+      "pct_used": 19.6,
       "pct_remaining": 75.5,
       "in_overage": false,
       "days_remaining": 294,
@@ -340,10 +325,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000hItxDAAS",
-      "w1_daily_avg": 42379,
-      "w2_daily_avg": 165810,
-      "weekly_trend_pct": 291.3
+      "bubble_group": "0013000000hItxDAAS"
     },
     {
       "id": "00130000005dLuMAAU",
@@ -352,9 +334,9 @@
       "owner": "Clara Bianchetti",
       "territory": "",
       "allowance": 310700000,
-      "usage": 60981082,
-      "crr": 42.5,
-      "pct_used": 19.6,
+      "usage": 54413892,
+      "crr": 55.1,
+      "pct_used": 17.5,
       "pct_remaining": 80.4,
       "in_overage": false,
       "days_remaining": 235,
@@ -408,10 +390,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "00130000005dLuMAAU",
-      "w1_daily_avg": 346438,
-      "w2_daily_avg": 194906,
-      "weekly_trend_pct": -43.7
+      "bubble_group": "00130000005dLuMAAU"
     },
     {
       "id": "0013y00001chQJ7AAM",
@@ -420,9 +399,9 @@
       "owner": "Alfredo Gabriel Panciera",
       "territory": "",
       "allowance": 6360000,
-      "usage": 549186,
-      "crr": 19.0,
-      "pct_used": 8.6,
+      "usage": 501432,
+      "crr": 19.6,
+      "pct_used": 7.9,
       "pct_remaining": 91.4,
       "in_overage": false,
       "days_remaining": 204,
@@ -452,10 +431,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013y00001chQJ7AAM",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013y00001chQJ7AAM"
     },
     {
       "id": "00130000005tQ9vAAE",
@@ -464,9 +440,9 @@
       "owner": "Clara Bianchetti",
       "territory": "",
       "allowance": 9009284688,
-      "usage": 3712706008,
-      "crr": 12.3,
-      "pct_used": 41.2,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 70.3,
       "in_overage": false,
       "days_remaining": 875,
@@ -568,10 +544,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "00130000005tQ9vAAE",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "00130000005tQ9vAAE"
     },
     {
       "id": "00130000016iGuYAAU",
@@ -580,9 +553,9 @@
       "owner": "Irina Winokur",
       "territory": "",
       "allowance": 18230586,
-      "usage": 775076,
-      "crr": 8.2,
-      "pct_used": 4.3,
+      "usage": 679890,
+      "crr": 13.6,
+      "pct_used": 3.7,
       "pct_remaining": 95.7,
       "in_overage": false,
       "days_remaining": 251,
@@ -628,10 +601,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "00130000016iGuYAAU",
-      "w1_daily_avg": 11,
-      "w2_daily_avg": 2609,
-      "weekly_trend_pct": 23618.2
+      "bubble_group": "00130000016iGuYAAU"
     },
     {
       "id": "0010M00001YuH8VQAV",
@@ -640,9 +610,9 @@
       "owner": "Irina Winokur",
       "territory": "",
       "allowance": 250000,
-      "usage": 5365,
-      "crr": 5.9,
-      "pct_used": 2.1,
+      "usage": 4791,
+      "crr": 6.0,
+      "pct_used": 1.9,
       "pct_remaining": 97.9,
       "in_overage": false,
       "days_remaining": 235,
@@ -664,10 +634,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001YuH8VQAV",
-      "w1_daily_avg": 26,
-      "w2_daily_avg": 17,
-      "weekly_trend_pct": -34.6
+      "bubble_group": "0010M00001YuH8VQAV"
     },
     {
       "id": "0010M00001YtwTbQAJ",
@@ -676,9 +643,9 @@
       "owner": "Karina de la Vega",
       "territory": "",
       "allowance": 516815707,
-      "usage": 3337025,
-      "crr": 3.0,
-      "pct_used": 0.6,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 99.4,
       "in_overage": false,
       "days_remaining": 598,
@@ -740,10 +707,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "0010M00001YtwTbQAJ",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001YtwTbQAJ"
     },
     {
       "id": "0013000001GVBNOAA5",
@@ -752,9 +716,9 @@
       "owner": "Maria del Carmen Rodriguez",
       "territory": "",
       "allowance": 931960149,
-      "usage": 2075364,
-      "crr": 1.9,
-      "pct_used": 0.2,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 99.8,
       "in_overage": false,
       "days_remaining": 966,
@@ -808,10 +772,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000001GVBNOAA5",
-      "w1_daily_avg": 18670,
-      "w2_daily_avg": 10014,
-      "weekly_trend_pct": -46.4
+      "bubble_group": "0013000001GVBNOAA5"
     },
     {
       "id": "0013000001NXdVAAA1",
@@ -820,8 +781,8 @@
       "owner": "Agustin Schachmann",
       "territory": "",
       "allowance": 24279167,
-      "usage": 149252,
-      "crr": 1.5,
+      "usage": 133656,
+      "crr": 1.7,
       "pct_used": 0.6,
       "pct_remaining": 99.4,
       "in_overage": false,
@@ -860,10 +821,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000001NXdVAAA1",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000001NXdVAAA1"
     },
     {
       "id": "0013000000IkoPEAAZ",
@@ -872,9 +830,9 @@
       "owner": "Irina Winokur",
       "territory": "",
       "allowance": 2625000,
-      "usage": 25907,
-      "crr": 1.5,
-      "pct_used": 1.0,
+      "usage": 24703,
+      "crr": 1.2,
+      "pct_used": 0.9,
       "pct_remaining": 99.0,
       "in_overage": false,
       "days_remaining": 64,
@@ -904,10 +862,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000IkoPEAAZ",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000000IkoPEAAZ"
     },
     {
       "id": "0013000000IkoJ1AAJ",
@@ -916,9 +871,9 @@
       "owner": "Maria del Carmen Rodriguez",
       "territory": "",
       "allowance": 13500000,
-      "usage": 91067,
+      "usage": 85761,
       "crr": 1.0,
-      "pct_used": 0.7,
+      "pct_used": 0.6,
       "pct_remaining": 99.3,
       "in_overage": false,
       "days_remaining": 125,
@@ -940,10 +895,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000IkoJ1AAJ",
-      "w1_daily_avg": 30,
-      "w2_daily_avg": 25,
-      "weekly_trend_pct": -16.7
+      "bubble_group": "0013000000IkoJ1AAJ"
     },
     {
       "id": "0010M00001SJS6AQAX",
@@ -952,8 +904,8 @@
       "owner": "Guido Garcia",
       "territory": "",
       "allowance": 38823963,
-      "usage": 285214,
-      "crr": 1.0,
+      "usage": 262912,
+      "crr": 1.5,
       "pct_used": 0.7,
       "pct_remaining": 99.3,
       "in_overage": false,
@@ -984,10 +936,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001SJS6AQAX",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001SJS6AQAX"
     },
     {
       "id": "0013y00001eDTFKAA4",
@@ -996,9 +945,9 @@
       "owner": "Clara Bianchetti",
       "territory": "",
       "allowance": 10538776,
-      "usage": 23399,
-      "crr": 1.0,
-      "pct_used": 0.2,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 99.8,
       "in_overage": false,
       "days_remaining": 875,
@@ -1044,10 +993,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "0013y00001eDTFKAA4",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013y00001eDTFKAA4"
     },
     {
       "id": "0010M00001XyHDGQA3",
@@ -1056,9 +1002,9 @@
       "owner": "Malena Ornstein",
       "territory": "",
       "allowance": 372785610,
-      "usage": 542089,
-      "crr": 0.7,
-      "pct_used": 0.1,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 99.9,
       "in_overage": false,
       "days_remaining": 874,
@@ -1104,10 +1050,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001XyHDGQA3",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001XyHDGQA3"
     },
     {
       "id": "0013000000326geAAA",
@@ -1116,9 +1059,9 @@
       "owner": "Eneas Matias Goglino",
       "territory": "",
       "allowance": 950000,
-      "usage": 992,
-      "crr": 0.6,
-      "pct_used": 0.1,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 99.9,
       "in_overage": false,
       "days_remaining": 918,
@@ -1148,10 +1091,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000326geAAA",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000000326geAAA"
     },
     {
       "id": "0013000001Kc6AyAAJ",
@@ -1160,8 +1100,8 @@
       "owner": "Monica Sempertegui",
       "territory": "",
       "allowance": 250000,
-      "usage": 457,
-      "crr": 0.4,
+      "usage": 415,
+      "crr": 0.5,
       "pct_used": 0.2,
       "pct_remaining": 99.8,
       "in_overage": false,
@@ -1184,10 +1124,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000001Kc6AyAAJ",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000001Kc6AyAAJ"
     },
     {
       "id": "0010M00001WYEHwQAP",
@@ -1196,9 +1133,9 @@
       "owner": "Alfredo Gabriel Panciera",
       "territory": "",
       "allowance": 146260000,
-      "usage": 112289,
-      "crr": 0.3,
-      "pct_used": 0.1,
+      "usage": 0,
+      "crr": 0.0,
+      "pct_used": 0.0,
       "pct_remaining": 99.9,
       "in_overage": false,
       "days_remaining": 781,
@@ -1260,10 +1197,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001WYEHwQAP",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001WYEHwQAP"
     },
     {
       "id": "0013000000roRAXAA2",
@@ -1272,7 +1206,7 @@
       "owner": "Alfredo Gabriel Panciera",
       "territory": "",
       "allowance": 950000,
-      "usage": 154,
+      "usage": 126,
       "crr": 0.1,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
@@ -1304,10 +1238,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000roRAXAA2",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000000roRAXAA2"
     },
     {
       "id": "0013000000I3YnKAAV",
@@ -1316,8 +1247,8 @@
       "owner": "Karina de la Vega",
       "territory": "",
       "allowance": 1200000,
-      "usage": 332,
-      "crr": 0.1,
+      "usage": 0,
+      "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
       "in_overage": false,
@@ -1348,10 +1279,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "0013000000I3YnKAAV",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000000I3YnKAAV"
     },
     {
       "id": "0010M00001WaxcVQAR",
@@ -1360,7 +1288,7 @@
       "owner": "Belen Kindrat",
       "territory": "",
       "allowance": 230766667,
-      "usage": 15401,
+      "usage": 0,
       "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
@@ -1432,10 +1360,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001WaxcVQAR",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001WaxcVQAR"
     },
     {
       "id": "0010M00001UV6CPQA1",
@@ -1468,10 +1393,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001UV6CPQA1",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001UV6CPQA1"
     },
     {
       "id": "0013000000IkqzpAAB",
@@ -1512,10 +1434,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000IkqzpAAB",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000000IkqzpAAB"
     },
     {
       "id": "0013y00001ceCeaAAE",
@@ -1524,7 +1443,7 @@
       "owner": "Monica Sempertegui",
       "territory": "",
       "allowance": 782700,
-      "usage": 1,
+      "usage": 0,
       "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
@@ -1548,10 +1467,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013y00001ceCeaAAE",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013y00001ceCeaAAE"
     },
     {
       "id": "0010M00001Z0CHqQAN",
@@ -1592,10 +1508,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001Z0CHqQAN",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001Z0CHqQAN"
     },
     {
       "id": "001ed00000Ij7fkAAB",
@@ -1636,10 +1549,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "001ed00000Ij7fkAAB",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "001ed00000Ij7fkAAB"
     },
     {
       "id": "001ed00000ZkW7BAAV",
@@ -1648,7 +1558,7 @@
       "owner": "Clara Bianchetti",
       "territory": "",
       "allowance": 3957983334,
-      "usage": 12655,
+      "usage": 0,
       "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
@@ -1704,10 +1614,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "001ed00000ZkW7BAAV",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "001ed00000ZkW7BAAV"
     },
     {
       "id": "0013y00001cQE4pAAG",
@@ -1716,7 +1623,7 @@
       "owner": "Clara Bianchetti",
       "territory": "",
       "allowance": 10538776,
-      "usage": 76,
+      "usage": 0,
       "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
@@ -1764,10 +1671,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "0013y00001cQE4pAAG",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013y00001cQE4pAAG"
     },
     {
       "id": "0013000001CCp8VAAT",
@@ -1800,10 +1704,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000001CCp8VAAT",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000001CCp8VAAT"
     },
     {
       "id": "0010M00001WIWyTQAX",
@@ -1812,7 +1713,7 @@
       "owner": "Karina de la Vega",
       "territory": "",
       "allowance": 1950000,
-      "usage": 12,
+      "usage": 0,
       "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
@@ -1836,10 +1737,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001WIWyTQAX",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001WIWyTQAX"
     },
     {
       "id": "0010M00001QkgEKQAZ",
@@ -1880,10 +1778,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001QkgEKQAZ",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001QkgEKQAZ"
     },
     {
       "id": "0013000001MreUvAAJ",
@@ -1892,7 +1787,7 @@
       "owner": "Malena Ornstein",
       "territory": "",
       "allowance": 5700000,
-      "usage": 47,
+      "usage": 0,
       "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
@@ -1932,10 +1827,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000001MreUvAAJ",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000001MreUvAAJ"
     },
     {
       "id": "0013000001Msa8jAAB",
@@ -1976,10 +1868,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000001Msa8jAAB",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000001Msa8jAAB"
     },
     {
       "id": "001ed00000GR5gkAAD",
@@ -2036,10 +1925,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "001ed00000GR5gkAAD",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "001ed00000GR5gkAAD"
     },
     {
       "id": "001ed00000GPtRaAAL",
@@ -2096,10 +1982,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "001ed00000GPtRaAAL",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "001ed00000GPtRaAAL"
     },
     {
       "id": "0010M00001SJ7JnQAL",
@@ -2140,10 +2023,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "0010M00001SJ7JnQAL",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001SJ7JnQAL"
     },
     {
       "id": "0010M00001QqvYQQAZ",
@@ -2176,10 +2056,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0010M00001QqvYQQAZ",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001QqvYQQAZ"
     },
     {
       "id": "0010M00001UV2V8QAL",
@@ -2220,10 +2097,7 @@
       ],
       "children": [],
       "sela": true,
-      "bubble_group": "0010M00001UV2V8QAL",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0010M00001UV2V8QAL"
     },
     {
       "id": "0013000000hJOT0AAO",
@@ -2232,7 +2106,7 @@
       "owner": "Irina Winokur",
       "territory": "",
       "allowance": 10748328,
-      "usage": 37,
+      "usage": 0,
       "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
@@ -2280,10 +2154,7 @@
       ],
       "children": [],
       "sela": false,
-      "bubble_group": "0013000000hJOT0AAO",
-      "w1_daily_avg": null,
-      "w2_daily_avg": null,
-      "weekly_trend_pct": null
+      "bubble_group": "0013000000hJOT0AAO"
     }
   ]
 }
