@@ -1,0 +1,4 @@
+_raw_entitlements.json
+_raw_transactions.json
+*.pyc
+__pycache__/

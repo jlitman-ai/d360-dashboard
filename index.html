@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D360 Consumption Intelligence</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8;color:#1a2332}
+/* HEADER */
+.hdr{background:linear-gradient(135deg,#032d60,#0176d3);color:white;padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+.hdr h1{font-size:20px;font-weight:800}
+.hdr .sub{font-size:11px;opacity:.65;margin-top:2px}
+.sf{background:white;color:#032d60;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px}
+/* TOOLBAR */
+.toolbar{background:white;border-bottom:1px solid #eef2f7;padding:8px 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nb{padding:10px 14px;font-size:12px;font-weight:700;cursor:pointer;border:none;background:none;color:#7a8b9a;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap}
+.nb:hover{color:#0176d3}.nb.active{color:#0176d3;border-bottom-color:#0176d3}
+.sep{width:1px;height:28px;background:#eef2f7}
+.nsep{flex:1}
+.ctabs{display:flex;gap:4px}
+.ct{padding:4px 11px;border-radius:16px;border:1.5px solid #dde5ed;font-size:11px;font-weight:700;cursor:pointer;background:white;color:#5a6b7c;transition:all .15s}
+.ct:hover{border-color:#0176d3;color:#0176d3}
+.ct.active{background:#0176d3;border-color:#0176d3;color:white}
+.ct.ar.active{background:#032d60;border-color:#032d60}
+.ct.cl.active{background:#c23934;border-color:#c23934}
+.ct.pe.active{background:#027e46;border-color:#027e46}
+/* FILTERS */
+.fbar{background:#f8fafc;border-bottom:1px solid #eef2f7;padding:8px 32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.fbar label{font-size:10px;font-weight:700;color:#9aabb8;text-transform:uppercase;letter-spacing:.6px;white-space:nowrap}
+.fbar select{font-size:12px;padding:4px 8px;border:1.5px solid #dde5ed;border-radius:6px;outline:none;background:white;cursor:pointer;color:#1a2332}
+.fbar select:focus{border-color:#0176d3}
+.fsep{width:1px;height:22px;background:#dde5ed}
+.rbtn{padding:4px 10px;border:1.5px solid #dde5ed;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;background:white;color:#5a6b7c}
+.rbtn:hover{border-color:#c23934;color:#c23934}
+/* VIEWS */
+.view{display:none}.view.active{display:block}
+/* KPIs */
+.krow{padding:18px 32px 0;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.kpi{background:white;border-radius:10px;padding:12px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi .lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8}
+.kpi .val{font-size:22px;font-weight:900;margin-top:4px;color:#032d60}
+.kpi .hint{font-size:10px;color:#b0bfc9;margin-top:2px}
+.kpi.red .val{color:#c23934}.kpi.grn .val{color:#027e46}.kpi.org .val{color:#c07e00}
+/* CHART */
+.csec{margin:14px 32px 0;background:white;border-radius:12px;padding:18px 22px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ctop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.ctitle{font-size:15px;font-weight:800;color:#032d60}
+.csub{font-size:11px;color:#9aabb8;margin-top:2px}
+.legend{display:flex;gap:12px;font-size:11px;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:4px;font-weight:700}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.cwrap{position:relative;height:380px}
+/* TABLE */
+.tsec{margin:14px 32px 32px;background:white;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.ttop{padding:12px 16px;border-bottom:1px solid #f0f4f8;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.ttop h3{font-size:13px;font-weight:800;color:#032d60;white-space:nowrap}
+.srch{padding:6px 10px;border:1.5px solid #dde5ed;border-radius:6px;font-size:12px;width:180px;outline:none}
+.srch:focus{border-color:#0176d3}
+table{width:100%;border-collapse:collapse}
+thead th{padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9aabb8;background:#f8fafc;border-bottom:1px solid #eef2f7;cursor:pointer;white-space:nowrap}
+thead th:hover{color:#0176d3}
+tbody tr{cursor:pointer;transition:background .12s}
+tbody tr:hover{background:#f0f6ff}
+tbody tr:not(:last-child) td{border-bottom:1px solid #f8fafc}
+tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
+.aname{font-weight:700;color:#032d60;font-size:12px}
+.cflag{display:inline-block;font-size:9px;font-weight:800;padding:1px 5px;border-radius:8px;margin-left:4px;vertical-align:middle}
+.bwrap{display:flex;align-items:center;gap:6px}
+.bbg{width:64px;height:4px;background:#eef2f7;border-radius:2px;overflow:hidden;flex-shrink:0}
+.bfill{height:100%;border-radius:2px}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:800;white-space:nowrap}
+.bg{background:#fce8e8;color:#c23934}.bt{background:#fff3d0;color:#a16400}.ba{background:#f0f4f8;color:#7a8b9a}
+.bsela{background:#e8f0ff;color:#0070d2;font-size:9px;padding:1px 5px;border-radius:6px;font-weight:800}
+/* DETAIL */
+.dhdr{padding:18px 32px;background:white;border-bottom:1px solid #eef2f7;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.back{display:flex;align-items:center;gap:4px;padding:6px 12px;background:#f0f4f8;border:none;border-radius:7px;cursor:pointer;font-size:12px;font-weight:700;color:#5a6b7c}
+.back:hover{background:#e0e8f4;color:#032d60}
+.dtitle{font-size:18px;font-weight:900;color:#032d60}
+.dsub{font-size:11px;color:#9aabb8;margin-top:2px}
+.dbody{padding:18px 32px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dc{background:white;border-radius:12px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.dc h4{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8;margin-bottom:10px}
+.dc.full{grid-column:1/-1}
+.gw{display:flex;flex-direction:column;align-items:center}
+.gbig{font-size:36px;font-weight:900;color:#032d60;margin-top:4px}
+.glbl{font-size:11px;color:#9aabb8}
+.sr{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f8fafc}
+.sr:last-child{border:none}
+.sl{font-size:12px;color:#5a6b7c}.sv{font-size:12px;font-weight:800;color:#032d60}
+.sv.red{color:#c23934}.sv.grn{color:#027e46}.sv.org{color:#c07e00}
+/* DAILY CHART TABS */
+.dtabs{display:flex;gap:5px;margin-bottom:10px}
+.dtab{padding:3px 10px;border-radius:14px;border:1.5px solid #dde5ed;font-size:11px;font-weight:700;cursor:pointer;background:white;color:#7a8b9a}
+.dtab.active{background:#032d60;border-color:#032d60;color:white}
+/* SIMULATOR */
+.sim{background:linear-gradient(135deg,#032d60,#0176d3);color:white;border-radius:12px;padding:16px 20px;grid-column:1/-1}
+.sim h4{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;opacity:.7;margin-bottom:12px}
+.sgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;align-items:end}
+.slbl{font-size:11px;font-weight:700;opacity:.8;display:block;margin-bottom:5px}
+.srange{width:100%;accent-color:#00bfff}
+.sval{font-size:18px;font-weight:900;margin-top:4px}
+.sres{background:rgba(255,255,255,.15);border-radius:8px;padding:10px;text-align:center}
+.sres .big{font-size:20px;font-weight:900}
+.sres .sm{font-size:10px;opacity:.7;margin-top:3px}
+/* LOADING */
+.loading{display:flex;align-items:center;justify-content:center;height:200px;font-size:14px;color:#9aabb8}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div><h1>D360 Consumption Intelligence</h1><div class="sub">Julián Litman · LATAM Portfolio · Updated: <span id="hdate">—</span></div></div>
+  <div class="sf">salesforce</div>
+</div>
+
+<div class="toolbar">
+  <button class="nb active" onclick="showView('overview')">Portfolio Overview</button>
+  <button class="nb" onclick="showView('detail')" id="dtab" style="display:none">▸ Account Detail</button>
+  <div class="nsep"></div>
+  <div class="ctabs">
+    <button class="ct active" onclick="setCountry('ALL',this)">🌎 All</button>
+    <button class="ct ar" onclick="setCountry('AR',this)">🇦🇷 AR</button>
+    <button class="ct cl" onclick="setCountry('CL',this)">🇨🇱 CL</button>
+    <button class="ct pe" onclick="setCountry('PE',this)">🇵🇪 PE</button>
+    <button class="ct" onclick="setCountry('OTHER',this)">🌐 Other</button>
+  </div>
+</div>
+
+<div class="fbar" id="fbar">
+  <label>Owner</label>
+  <select id="fowner" onchange="onFilter()"><option value="all">All AEs</option></select>
+  <div class="fsep"></div>
+  <label>CRR Cohort</label>
+  <select id="fcohort" onchange="onFilter()">
+    <option value="all">All</option>
+    <option value="Consuming Well">Consuming Well (≥85%)</option>
+    <option value="Consuming">Consuming (50–84%)</option>
+    <option value="Under Consuming">Under Consuming (&lt;50%)</option>
+  </select>
+  <div class="fsep"></div>
+  <label>Credits Left</label>
+  <select id="fcred" onchange="onFilter()">
+    <option value="all">All</option>
+    <option value="critical">&lt;20% remaining</option>
+    <option value="low">20–50% remaining</option>
+    <option value="good">&gt;50% remaining</option>
+  </select>
+  <div class="fsep"></div>
+  <label>SELA</label>
+  <select id="fsela" onchange="onFilter()">
+    <option value="all">All</option>
+    <option value="y">SELA only</option>
+    <option value="n">Non-SELA</option>
+  </select>
+  <button class="rbtn" onclick="resetFilters()">↺ Reset</button>
+  <div class="nsep"></div>
+  <input class="srch" type="text" placeholder="🔍 Search..." id="sinput" oninput="searchQ=this.value;render()">
+</div>
+
+<!-- OVERVIEW -->
+<div id="view-overview" class="view active">
+  <div class="krow">
+    <div class="kpi"><div class="lbl">Accounts</div><div class="val" id="k-tot">—</div><div class="hint">active entitlements</div></div>
+    <div class="kpi red"><div class="lbl">Overage / At Risk</div><div class="val" id="k-ov">—</div><div class="hint">needs action now</div></div>
+    <div class="kpi red"><div class="lbl">Growth Opps</div><div class="val" id="k-gr">—</div><div class="hint">CRR &gt;80% → upsell</div></div>
+    <div class="kpi grn"><div class="lbl">Upsell Potential</div><div class="val" id="k-up">—</div><div class="hint">est. from run rate</div></div>
+    <div class="kpi"><div class="lbl">Needs Activation</div><div class="val" id="k-ac">—</div><div class="hint">CRR &lt;20%</div></div>
+    <div class="kpi org"><div class="lbl">Consuming Well</div><div class="val" id="k-cw">—</div><div class="hint">CRR ≥85%</div></div>
+  </div>
+
+  <div class="csec">
+    <div class="ctop">
+      <div><div class="ctitle">Account Prioritization Matrix</div><div class="csub">X = CRR% · Y = Allowance (M credits) · Size = Allowance · Click to open account</div></div>
+      <div class="legend">
+        <div class="leg"><div class="dot" style="background:#c23934"></div>Growth Opp (CRR&gt;80%)</div>
+        <div class="leg"><div class="dot" style="background:#c07e00"></div>On Track (20–80%)</div>
+        <div class="leg"><div class="dot" style="background:#9eb5c8"></div>Activate (&lt;20%)</div>
+      </div>
+    </div>
+    <div class="cwrap"><canvas id="bChart"></canvas></div>
+  </div>
+
+  <div class="tsec">
+    <div class="ttop">
+      <h3>Accounts <span id="tcnt" style="font-weight:400;color:#9aabb8;font-size:11px"></span></h3>
+    </div>
+    <table>
+      <thead><tr>
+        <th onclick="srt('name')">Account</th>
+        <th onclick="srt('country')">Country</th>
+        <th onclick="srt('owner')">AE Owner</th>
+        <th onclick="srt('crr')">CRR%</th>
+        <th onclick="srt('crr_cohort')">Cohort</th>
+        <th onclick="srt('pct_used')">Used</th>
+        <th onclick="srt('pct_remaining')">Left</th>
+        <th onclick="srt('allowance')">Allowance</th>
+        <th onclick="srt('upsell_usd')">Upsell $</th>
+        <th onclick="srt('days_remaining')">Days Left</th>
+        <th onclick="srt('overage_date')">Overage Date</th>
+        <th>SELA</th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<div id="view-detail" class="view">
+  <div class="dhdr">
+    <button class="back" onclick="showView('overview')">← Portfolio</button>
+    <div><div class="dtitle" id="dn">—</div><div class="dsub" id="did">—</div></div>
+    <div id="dbadge" style="margin-left:10px"></div>
+  </div>
+  <div class="dbody">
+    <div class="dc">
+      <h4>Consumption Gauge</h4>
+      <div class="gw">
+        <canvas id="gaugeC" width="180" height="105"></canvas>
+        <div class="gbig" id="gpct">—</div>
+        <div class="glbl">of credits consumed</div>
+      </div>
+    </div>
+    <div class="dc">
+      <h4>Key Metrics</h4>
+      <div class="sr"><span class="sl">CRR (Consumption Run Rate)</span><span class="sv" id="dcrr">—</span></div>
+      <div class="sr"><span class="sl">CRR Cohort</span><span class="sv" id="dcohort">—</span></div>
+      <div class="sr"><span class="sl">AE Owner</span><span class="sv" id="downer">—</span></div>
+      <div class="sr"><span class="sl">Total Allowance</span><span class="sv" id="dallow">—</span></div>
+      <div class="sr"><span class="sl">Credits Consumed</span><span class="sv" id="dusage">—</span></div>
+      <div class="sr"><span class="sl">Credits Remaining</span><span class="sv" id="drem">—</span></div>
+      <div class="sr"><span class="sl">Days Remaining</span><span class="sv" id="ddays">—</span></div>
+      <div class="sr"><span class="sl">Upsell Potential (USD)</span><span class="sv grn" id="dup">—</span></div>
+      <div class="sr"><span class="sl">Projected Overage</span><span class="sv" id="dov">—</span></div>
+    </div>
+
+    <!-- CONTRACTS -->
+    <div class="dc full" id="contracts-card">
+      <h4>Active Contracts</h4>
+      <div id="contracts-table"><div class="loading">Loading...</div></div>
+    </div>
+
+    <!-- DAILY CHART -->
+    <div class="dc full">
+      <h4>Daily Consumption — Last 30 Days</h4>
+      <div class="dtabs">
+        <button class="dtab active" onclick="setDailyMode('stacked',this)">Stacked</button>
+        <button class="dtab" onclick="setDailyMode('line',this)">Line</button>
+        <button class="dtab" onclick="setDailyMode('cumul',this)">Cumulative</button>
+      </div>
+      <div style="height:220px"><canvas id="dailyC"></canvas></div>
+    </div>
+
+    <!-- PROJECTION -->
+    <div class="dc full">
+      <h4>Projection to Contract End</h4>
+      <div style="height:170px"><canvas id="projC"></canvas></div>
+    </div>
+
+    <!-- SIMULATOR -->
+    <div class="sim full">
+      <h4>🔮 Expansion Simulator</h4>
+      <div class="sgrid">
+        <div>
+          <label class="slbl">Additional Credits (M)</label>
+          <input type="range" class="srange" id="simr" min="0" max="200" step="1" value="0" oninput="updateSim()">
+          <div class="sval" id="simv">+0M</div>
+        </div>
+        <div class="sres"><div class="big" id="simd">—</div><div class="sm">New Overage Date</div></div>
+        <div class="sres"><div class="big" id="simm">—</div><div class="sm">Extra Coverage</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// LOAD DATA
+// ═══════════════════════════════════════════════════════════════════════
+let ACCOUNTS = [];
+let DAILY_DATA = {};
+let country = 'ALL', sortKey = 'crr', sortDir = -1, searchQ = '';
+let fOwner = 'all', fCohort = 'all', fCred = 'all', fSela = 'all';
+let bubChart, projChart, dailyChart;
+
+async function loadData() {
+  try {
+    const res = await fetch('data.json?t=' + Date.now());
+    const json = await res.json();
+    ACCOUNTS = json.accounts;
+    document.getElementById('hdate').textContent = json.updated;
+    populateOwnerFilter();
+    render();
+  } catch(e) {
+    document.getElementById('tbody').innerHTML = '<tr><td colspan="13" style="text-align:center;padding:40px;color:#c23934">Error loading data.json — run the update script first.</td></tr>';
+  }
+}
+
+function populateOwnerFilter() {
+  const owners = [...new Set(ACCOUNTS.map(a => a.owner))].sort();
+  const sel = document.getElementById('fowner');
+  owners.forEach(o => {
+    const opt = document.createElement('option');
+    opt.value = o; opt.textContent = o;
+    sel.appendChild(opt);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// FILTER + RENDER
+// ═══════════════════════════════════════════════════════════════════════
+function onFilter() {
+  fOwner = document.getElementById('fowner').value;
+  fCohort = document.getElementById('fcohort').value;
+  fCred = document.getElementById('fcred').value;
+  fSela = document.getElementById('fsela').value;
+  render();
+}
+
+function resetFilters() {
+  ['fowner','fcohort','fcred','fsela'].forEach(id => document.getElementById(id).value = 'all');
+  document.getElementById('sinput').value = '';
+  searchQ = '';
+  fOwner = fCohort = fCred = fSela = 'all';
+  render();
+}
+
+function filtered() {
+  return ACCOUNTS.filter(a => {
+    if (country === 'AR' && a.country !== 'AR') return false;
+    if (country === 'CL' && a.country !== 'CL') return false;
+    if (country === 'PE' && a.country !== 'PE') return false;
+    if (country === 'OTHER' && ['AR','CL','PE'].includes(a.country)) return false;
+    if (fOwner !== 'all' && a.owner !== fOwner) return false;
+    if (fCohort !== 'all' && a.crr_cohort !== fCohort) return false;
+    if (fCred === 'critical' && a.pct_remaining >= 20) return false;
+    if (fCred === 'low' && (a.pct_remaining < 20 || a.pct_remaining > 50)) return false;
+    if (fCred === 'good' && a.pct_remaining <= 50) return false;
+    if (fSela === 'y' && !a.sela) return false;
+    if (fSela === 'n' && a.sela) return false;
+    if (searchQ && !a.name.toLowerCase().includes(searchQ.toLowerCase())) return false;
+    return true;
+  });
+}
+
+function render() {
+  const d = filtered();
+  updateKPIs(d);
+  rebuildBubble(d);
+  buildTable(getSorted(d));
+}
+
+function setCountry(c, btn) {
+  country = c;
+  document.querySelectorAll('.ct').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// KPIs
+// ═══════════════════════════════════════════════════════════════════════
+function updateKPIs(d) {
+  document.getElementById('k-tot').textContent = d.length;
+  document.getElementById('k-ov').textContent = d.filter(a => a.in_overage || (a.days_remaining < 60 && a.crr > 80)).length;
+  document.getElementById('k-gr').textContent = d.filter(a => a.crr > 80).length;
+  const up = d.reduce((s,a) => s+a.upsell_usd, 0);
+  document.getElementById('k-up').textContent = up > 0 ? '$' + fmt(up) : '—';
+  document.getElementById('k-ac').textContent = d.filter(a => a.crr < 20).length;
+  document.getElementById('k-cw').textContent = d.filter(a => a.crr >= 85).length;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// BUBBLE CHART
+// ═══════════════════════════════════════════════════════════════════════
+const quadrantPlugin = {
+  id:'quadrants',
+  beforeDraw(chart) {
+    const {ctx, chartArea:{left,right,top,bottom}, scales:{x,y}} = chart;
+    const mx = x.getPixelForValue(80), my = (top+bottom)/2;
+    ctx.save();
+    ctx.fillStyle='rgba(0,112,211,0.04)'; ctx.fillRect(left,top,mx-left,my-top);
+    ctx.fillStyle='rgba(2,126,70,0.06)'; ctx.fillRect(mx,top,right-mx,my-top);
+    ctx.fillStyle='rgba(196,137,0,0.04)'; ctx.fillRect(left,my,mx-left,bottom-my);
+    ctx.fillStyle='rgba(194,57,52,0.06)'; ctx.fillRect(mx,my,right-mx,bottom-my);
+    ctx.setLineDash([5,4]); ctx.strokeStyle='#ccd8e4'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(mx,top); ctx.lineTo(mx,bottom); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(left,my); ctx.lineTo(right,my); ctx.stroke();
+    ctx.setLineDash([]); ctx.font='bold 11px -apple-system,sans-serif'; ctx.textAlign='center';
+    const ql=[
+      {t:'💤 Sleeping Giants',x:(left+mx)/2,y:top+18,c:'#0176d3'},
+      {t:'⚡ Powerhouses',x:(mx+right)/2,y:top+18,c:'#027e46'},
+      {t:'🌱 Activation Opportunity',x:(left+mx)/2,y:bottom-12,c:'#9a4a00'},
+      {t:'🚀 Rising Stars',x:(mx+right)/2,y:bottom-12,c:'#c23934'},
+    ];
+    ql.forEach(l => { ctx.fillStyle=l.c+'99'; ctx.fillText(l.t,l.x,l.y); });
+    ctx.restore();
+  }
+};
+
+const cols = {growth:'#c23934', track:'#c07e00', activate:'#9eb5c8'};
+
+function rebuildBubble(data) {
+  if (bubChart) bubChart.destroy();
+  const ctx = document.getElementById('bChart').getContext('2d');
+  const datasets = data.map(a => ({
+    label: a.name,
+    data: [{x:Math.min(a.crr,280), y:a.allowance/1e6, r:Math.max(7,Math.min(28,Math.sqrt(a.allowance/1e6)*1.3))}],
+    backgroundColor: cols[a.status]+'bb',
+    borderColor: cols[a.status],
+    borderWidth: 2,
+    _acc: a
+  }));
+  bubChart = new Chart(ctx, {
+    type:'bubble', data:{datasets},
+    plugins:[quadrantPlugin],
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      onClick:(e,els) => { if(els.length) openDetail(bubChart.data.datasets[els[0].datasetIndex]._acc); },
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:c=>{
+          const a=c.dataset._acc;
+          const r=[`${a.name} (${a.country})`,`CRR: ${a.crr}%`,`Cohort: ${a.crr_cohort}`,`Owner: ${a.owner}`,`Allowance: ${fmtM(a.allowance)}`,`Used: ${a.pct_used}%`];
+          if(a.upsell_usd>0) r.push(`Upsell: $${fmt(a.upsell_usd)}`);
+          return r;
+        }}}
+      },
+      scales:{
+        x:{title:{display:true,text:'CRR (%)',font:{weight:'700'}},grid:{color:'#f0f4f8'},ticks:{callback:v=>v+'%'},min:0},
+        y:{title:{display:true,text:'Allowance (M credits)',font:{weight:'700'}},grid:{color:'#f0f4f8'},ticks:{callback:v=>v+'M'}}
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// TABLE
+// ═══════════════════════════════════════════════════════════════════════
+const COUNTRY_FLAGS = {AR:'🇦🇷',CL:'🇨🇱',PE:'🇵🇪',CO:'🇨🇴',EC:'🇪🇨',PY:'🇵🇾',US:'🇺🇸'};
+const COHORT_STYLE = {'Consuming Well':'color:#027e46;font-weight:800','Consuming':'color:#c07e00;font-weight:700','Under Consuming':'color:#c23934;font-weight:700'};
+
+function getSorted(data) {
+  return [...data].sort((a,b)=>{
+    const av=a[sortKey]??'', bv=b[sortKey]??'';
+    return (av>bv?1:av<bv?-1:0)*sortDir;
+  });
+}
+function srt(k){ if(sortKey===k) sortDir*=-1; else{sortKey=k;sortDir=-1;} buildTable(getSorted(filtered())); }
+
+function buildTable(data) {
+  document.getElementById('tcnt').textContent = `(${data.length})`;
+  const sB={growth:'<span class="badge bg">🔴 Growth</span>',track:'<span class="badge bt">🟡 On Track</span>',activate:'<span class="badge ba">⚪ Activate</span>'};
+  const tbody = document.getElementById('tbody');
+  tbody.textContent = '';
+  data.forEach(a => {
+    const tr = document.createElement('tr');
+    tr.addEventListener('click', () => openDetail(a));
+    const flag = COUNTRY_FLAGS[a.country] || a.country;
+    const crrColor = a.crr>80?'#c23934':a.crr>20?'#c07e00':'#7a8b9a';
+    tr.innerHTML = `
+      <td><span class="aname">${esc(a.name)}</span></td>
+      <td><span style="font-size:14px">${flag}</span> <span style="font-size:10px;color:#5a6b7c">${a.country}</span></td>
+      <td style="font-size:11px;color:#5a6b7c">${esc(a.owner)}</td>
+      <td><div class="bwrap"><div class="bbg"><div class="bfill" style="width:${Math.min(a.crr/280*100,100)}%;background:${crrColor}"></div></div><span style="font-weight:800;font-size:12px;color:${crrColor}">${a.crr}%</span></div></td>
+      <td style="${COHORT_STYLE[a.crr_cohort]||''};font-size:11px">${a.crr_cohort}</td>
+      <td>${a.pct_used}%</td>
+      <td style="font-weight:700;color:${a.pct_remaining<20?'#c23934':a.pct_remaining<50?'#c07e00':'#027e46'}">${a.pct_remaining}%</td>
+      <td>${fmtM(a.allowance)}</td>
+      <td style="font-weight:800;color:${a.upsell_usd>0?'#027e46':'#b0bfc9'}">${a.upsell_usd>0?'$'+fmt(a.upsell_usd):'—'}</td>
+      <td style="font-weight:700;color:${a.days_remaining<60?'#c23934':'#032d60'}">${a.days_remaining}d</td>
+      <td style="font-size:11px;color:${a.in_overage?'#c23934':'#5a6b7c'}">${a.overage_date||'—'}</td>
+      <td>${a.sela?'<span class="bsela">SELA</span>':'<span style="color:#b0bfc9;font-size:10px">—</span>'}</td>
+      <td>${sB[a.status]}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// DETAIL
+// ═══════════════════════════════════════════════════════════════════════
+const TYPE_COLORS = {
+  'DSC':'#0176d3','Flex':'#7b5ea7','SuperMsg':'#c07e00','Messages':'#c07e00',
+  'CorporateContacts':'#c23934','Profiles':'#027e46','Storage':'#5a6b7c',
+  'Commerce':'#0070d2','EnterpriseContacts':'#9a4a00','Advocates':'#027e46','Other':'#9eb5c8'
+};
+let dailyMode = 'stacked';
+
+function setDailyMode(m,btn){
+  dailyMode=m;
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  if(window._ca) buildDailyChart(window._ca);
+}
+
+function openDetail(acc) {
+  document.getElementById('dtab').style.display='';
+  showView('detail');
+  window._ca = acc;
+  document.getElementById('dn').textContent = acc.name;
+  document.getElementById('did').textContent = `${acc.id} · ${COUNTRY_FLAGS[acc.country]||acc.country} ${acc.country} · ${acc.owner}`;
+  const pct = Math.round(acc.usage/acc.allowance*100);
+  document.getElementById('gpct').textContent = pct+'%';
+  const sc={growth:'#c23934',track:'#c07e00',activate:'#7a8b9a'};
+  const sl={growth:'🔴 Growth Opportunity',track:'🟡 On Track',activate:'⚪ Needs Activation'};
+  document.getElementById('dbadge').innerHTML=`<span class="badge" style="background:${sc[acc.status]}22;color:${sc[acc.status]};font-size:11px;padding:4px 10px">${sl[acc.status]}</span>${acc.sela?'<span class="bsela" style="margin-left:6px">SELA</span>':''}`;
+  document.getElementById('dcrr').textContent=acc.crr+'%';
+  document.getElementById('dcrr').className='sv '+(acc.crr>80?'red':acc.crr>20?'org':'');
+  document.getElementById('dcohort').textContent=acc.crr_cohort;
+  document.getElementById('dcohort').style.cssText=COHORT_STYLE[acc.crr_cohort]||'';
+  document.getElementById('downer').textContent=acc.owner;
+  document.getElementById('dallow').textContent=fmtM(acc.allowance);
+  document.getElementById('dusage').textContent=fmtM(acc.usage);
+  const rem=acc.allowance-acc.usage;
+  document.getElementById('drem').textContent=fmtM(Math.max(0,rem));
+  document.getElementById('drem').className='sv '+(rem<0?'red':rem<acc.allowance*.2?'org':'grn');
+  document.getElementById('ddays').textContent=acc.days_remaining+'d';
+  document.getElementById('ddays').className='sv '+(acc.days_remaining<60?'red':'');
+  document.getElementById('dup').textContent=acc.upsell_usd>0?'$'+fmt(acc.upsell_usd):'—';
+  document.getElementById('dov').textContent=acc.overage_date||'Within contract';
+  document.getElementById('dov').className='sv '+(acc.in_overage?'red':'org');
+  drawGauge(pct,acc.crr);
+  buildContractsTable(acc);
+  loadAndBuildDailyChart(acc);
+  buildProjChart(acc);
+  document.getElementById('simr').max=Math.max(50,Math.round(acc.allowance/1e6*2));
+  document.getElementById('simr').value=0;
+  updateSim();
+}
+
+function drawGauge(pct,crr){
+  const c=document.getElementById('gaugeC').getContext('2d');
+  c.clearRect(0,0,180,105);
+  const cx=90,cy=100,r=75;
+  c.beginPath();c.arc(cx,cy,r,Math.PI,2*Math.PI);c.strokeStyle='#eef2f7';c.lineWidth=14;c.stroke();
+  const col=crr>150?'#7b0000':crr>80?'#c23934':crr>40?'#c07e00':'#027e46';
+  c.beginPath();c.arc(cx,cy,r,Math.PI,Math.PI+Math.PI*Math.min(pct,100)/100);c.strokeStyle=col;c.lineWidth=14;c.lineCap='round';c.stroke();
+}
+
+function buildContractsTable(acc){
+  const el=document.getElementById('contracts-table');
+  const schedules=acc.schedules||[];
+  if(!schedules.length){el.textContent='No contract detail available.';return;}
+  const table=document.createElement('table');
+  table.style.cssText='width:100%;border-collapse:collapse';
+  const thead=table.createTHead();
+  const hr=thead.insertRow();
+  ['Contract Type','Period','Allowance','Used%','Remaining','CRR%','Days','Est. Overage'].forEach(h=>{
+    const th=document.createElement('th');th.textContent=h;
+    th.style.cssText='padding:7px 10px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9aabb8;background:#f8fafc';
+    hr.appendChild(th);
+  });
+  const tbody=table.createTBody();
+  schedules.forEach(s=>{
+    const pct=s.allowance>0?Math.round(s.usage/s.allowance*100):0;
+    const td2=s.days_elapsed+s.days_remaining;
+    const crr=td2>0&&s.allowance>0?Math.round((s.usage/s.allowance)/(s.days_elapsed/td2)*10)/10:0;
+    const rem=Math.max(0,s.allowance-s.usage);
+    const ovCol=pct>=100?'#c23934':pct>=80?'#c07e00':'#027e46';
+    const row=tbody.insertRow();row.style.borderBottom='1px solid #f8fafc';
+    const cells=[
+      s.type,
+      s.start+' → '+s.end,
+      fmtM(s.allowance),
+      '',
+      fmtM(rem),
+      crr+'%',
+      s.days_remaining+'d',
+      s.overage_date||'—'
+    ];
+    cells.forEach((v,i)=>{
+      const td=row.insertCell();td.style.cssText='padding:8px 10px;font-size:11px';
+      if(i===3){
+        const wrap=document.createElement('div');wrap.style.cssText='display:flex;align-items:center;gap:6px';
+        const bg=document.createElement('div');bg.style.cssText='width:60px;height:4px;background:#eef2f7;border-radius:2px;overflow:hidden';
+        const fill=document.createElement('div');fill.style.cssText=`width:${Math.min(pct,100)}%;height:100%;background:${ovCol};border-radius:2px`;
+        bg.appendChild(fill);
+        const lbl=document.createElement('span');lbl.textContent=pct+'%';lbl.style.cssText=`font-size:11px;font-weight:800;color:${ovCol}`;
+        wrap.appendChild(bg);wrap.appendChild(lbl);td.appendChild(wrap);
+      } else {
+        td.textContent=v;
+        if(i===0)td.style.fontWeight='700';
+        if(i===5)td.style.cssText+=`font-weight:800;color:${crr>80?'#c23934':crr>20?'#c07e00':'#7a8b9a'}`;
+        if(i===6)td.style.color=s.days_remaining<60?'#c23934':'#5a6b7c';
+        if(i===7)td.style.color=pct>=100?'#c23934':'#5a6b7c';
+      }
+    });
+  });
+  el.textContent='';el.appendChild(table);
+}
+
+async function loadAndBuildDailyChart(acc){
+  if(DAILY_DATA[acc.id]){buildDailyChart(acc);return;}
+  try{
+    const res=await fetch(`daily/${acc.id}.json?t=${Date.now()}`);
+    if(res.ok){DAILY_DATA[acc.id]=await res.json();}
+  }catch(e){}
+  buildDailyChart(acc);
+}
+
+function buildDailyChart(acc){
+  if(dailyChart)dailyChart.destroy();
+  const ctx=document.getElementById('dailyC').getContext('2d');
+  const raw=DAILY_DATA[acc.id];
+  if(!raw){
+    // Synthetic from avg
+    const dr=acc.daily_rate,days=30;
+    const today=new Date(),labels=[],vals=[];
+    for(let i=days-1;i>=0;i--){const d=new Date(today);d.setDate(d.getDate()-i);labels.push(d.toLocaleDateString('en-US',{month:'2-digit',day:'2-digit'}));vals.push(Math.round(dr*(0.7+Math.random()*0.6)));}
+    dailyChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[{label:'Est. Daily',data:vals,backgroundColor:'#0176d380',borderColor:'#0176d3',borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'}}}}});
+    return;
+  }
+  const types=Object.keys(raw.series);
+  if(dailyMode==='cumul'){
+    const datasets=types.map(t=>({label:t,data:raw.series[t].reduce((a,v,i)=>{a.push((a[i-1]||0)+v);return a;},[]),borderColor:TYPE_COLORS[t]||'#999',backgroundColor:'transparent',tension:.3,pointRadius:2,fill:false}));
+    dailyChart=new Chart(ctx,{type:'line',data:{labels:raw.dates,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'}}}}});
+  }else if(dailyMode==='line'){
+    const datasets=types.map(t=>({label:t,data:raw.series[t],borderColor:TYPE_COLORS[t]||'#999',backgroundColor:'transparent',tension:.3,pointRadius:2,fill:false}));
+    dailyChart=new Chart(ctx,{type:'line',data:{labels:raw.dates,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'}}}}});
+  }else{
+    const datasets=types.map(t=>({label:t,data:raw.series[t],backgroundColor:TYPE_COLORS[t]||'#999',stack:'s'}));
+    dailyChart=new Chart(ctx,{type:'bar',data:{labels:raw.dates,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:9}}},y:{stacked:true,ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'}}}}});
+  }
+}
+
+function buildProjChart(acc){
+  if(projChart)projChart.destroy();
+  const ctx=document.getElementById('projC').getContext('2d');
+  const dr=acc.daily_rate,total=acc.days_elapsed+acc.days_remaining;
+  const step=Math.max(1,Math.ceil(total/14));
+  const labels=[],actual=[],proj=[];
+  for(let d=-acc.days_elapsed;d<=acc.days_remaining;d+=step){
+    const dt=new Date();dt.setDate(dt.getDate()+d);
+    labels.push(dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}));
+    const v=Math.round(acc.usage+dr*d);
+    if(d<=0){actual.push(Math.max(0,v));proj.push(null);}
+    else{actual.push(null);proj.push(Math.max(0,v));}
+  }
+  projChart=new Chart(ctx,{type:'line',data:{labels,datasets:[
+    {label:'Actual',data:actual,borderColor:'#0176d3',backgroundColor:'#0176d312',fill:true,tension:.3,pointRadius:2},
+    {label:'Projected',data:proj,borderColor:'#c07e00',borderDash:[6,4],backgroundColor:'transparent',tension:.3,pointRadius:1},
+    {label:'Allowance',data:labels.map(()=>acc.allowance),borderColor:'#c23934',borderDash:[3,3],borderWidth:1.5,pointRadius:0,backgroundColor:'transparent'}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{y:{ticks:{callback:v=>fmtM(v)},grid:{color:'#f8fafc'}},x:{grid:{display:false},ticks:{font:{size:9}}}}}});
+}
+
+function updateSim(){
+  const acc=window._ca;if(!acc)return;
+  const addM=parseFloat(document.getElementById('simr').value);
+  document.getElementById('simv').textContent='+'+addM.toFixed(0)+'M credits';
+  const rem=acc.allowance+addM*1e6-acc.usage;
+  const xDays=acc.daily_rate>0?Math.round(rem/acc.daily_rate):acc.days_remaining;
+  const nd=new Date();nd.setDate(nd.getDate()+Math.max(0,xDays));
+  document.getElementById('simd').textContent=nd.toLocaleDateString('en-US',{month:'short',year:'numeric'});
+  document.getElementById('simm').textContent=Math.max(0,Math.round(xDays/30))+'mo';
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════════════
+function showView(v){
+  document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(e=>e.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  const btn=document.querySelector(`[onclick="showView('${v}')"]`);
+  if(btn)btn.classList.add('active');
+  document.getElementById('fbar').style.display=v==='overview'?'flex':'none';
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════════════════════
+function fmtM(n){if(n>=1e9)return(n/1e9).toFixed(1)+'B';if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(0)+'K';return Math.round(n).toLocaleString();}
+function fmt(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(0)+'K';return n.toLocaleString();}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+loadData();
+</script>
+</body>
+</html>
