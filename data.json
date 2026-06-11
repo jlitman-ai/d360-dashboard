@@ -597,21 +597,21 @@
       "name": "BHN Seguros Generales S.A.",
       "global_company": "BANCO HIPOTECARIO S.A.",
       "country": "AR",
-      "owner": "Alfredo Gabriel Panciera",
+      "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_03",
-      "allowance": 18900000,
-      "usage": 736308,
+      "allowance": 17950000,
+      "usage": 736305,
       "crr": 8.2,
-      "pct_used": 3.9,
-      "pct_remaining": 96.1,
+      "pct_used": 4.1,
+      "pct_remaining": 95.9,
       "in_overage": false,
-      "days_remaining": 205,
-      "days_elapsed": 160,
+      "days_remaining": 186,
+      "days_elapsed": 179,
       "overage_date": "",
-      "upsell_usd": 73604,
+      "upsell_usd": 68854,
       "status": "activate",
       "crr_cohort": "Under Consuming",
-      "daily_rate": 4602,
+      "daily_rate": 4113,
       "schedules": [
         {
           "type": "Data Services Credits",
@@ -630,36 +630,9 @@
           "usage": 732396,
           "days_remaining": 186,
           "account": "BHN Seguros Generales S.A."
-        },
-        {
-          "type": "Data Services Credits",
-          "start": "",
-          "end": "",
-          "allowance": 750000,
-          "usage": 3,
-          "days_remaining": 205,
-          "account": "Banco Hipotecario S A"
-        },
-        {
-          "type": "Flex Credits",
-          "start": "",
-          "end": "",
-          "allowance": 200000,
-          "usage": 0,
-          "days_remaining": 205,
-          "account": "Banco Hipotecario S A"
         }
       ],
-      "children": [
-        {
-          "id": "0013000000IkqzpAAB",
-          "name": "Banco Hipotecario S A",
-          "allowance": 950000,
-          "usage": 3,
-          "pct_used": 0.0,
-          "crr": 0.0
-        }
-      ],
+      "children": [],
       "sela": false
     },
     {
@@ -1345,6 +1318,49 @@
       "sela": false
     },
     {
+      "id": "0013000000IkqzpAAB",
+      "name": "Banco Hipotecario S A",
+      "global_company": "BANCO HIPOTECARIO S.A.",
+      "country": "AR",
+      "owner": "Alfredo Gabriel Panciera",
+      "territory": "LATAM_GRW_ENTR_AR_VERT1_04",
+      "allowance": 950000,
+      "usage": 3,
+      "crr": 0.0,
+      "pct_used": 0.0,
+      "pct_remaining": 100.0,
+      "in_overage": false,
+      "days_remaining": 205,
+      "days_elapsed": 160,
+      "overage_date": "",
+      "upsell_usd": 4750,
+      "status": "activate",
+      "crr_cohort": "Under Consuming",
+      "daily_rate": 0,
+      "schedules": [
+        {
+          "type": "Data Services Credits",
+          "start": "",
+          "end": "",
+          "allowance": 750000,
+          "usage": 3,
+          "days_remaining": 205,
+          "account": "Banco Hipotecario S A"
+        },
+        {
+          "type": "Flex Credits",
+          "start": "",
+          "end": "",
+          "allowance": 200000,
+          "usage": 0,
+          "days_remaining": 205,
+          "account": "Banco Hipotecario S A"
+        }
+      ],
+      "children": [],
+      "sela": false
+    },
+    {
       "id": "0013000000ZjBNtAAN",
       "name": "Cirion Technologies Solutions, LLC",
       "global_company": "Cirion Technologies Fiber Networks, Llc",
@@ -1680,25 +1696,25 @@
       "sela": false
     },
     {
-      "id": "0013000000hJOT0AAO",
-      "name": "ZURICH ARGENTINA COMPA\u00d1IA DE SEGUROS S.A.",
+      "id": "0010M00001QqvYQQAZ",
+      "name": "Universal Assistance Argentina SA",
       "global_company": "Zurich Insurance Group AG",
       "country": "AR",
       "owner": "\u2014",
       "territory": "LATAM_GRW_ENTR_AR_VERT2_03",
-      "allowance": 10600900,
-      "usage": 37,
+      "allowance": 250900,
+      "usage": 0,
       "crr": 0.0,
       "pct_used": 0.0,
       "pct_remaining": 100.0,
       "in_overage": false,
-      "days_remaining": 935,
-      "days_elapsed": 1,
+      "days_remaining": 111,
+      "days_elapsed": 254,
       "overage_date": "",
-      "upsell_usd": 50059,
+      "upsell_usd": 2509,
       "status": "activate",
       "crr_cohort": "Under Consuming",
-      "daily_rate": 37,
+      "daily_rate": 0,
       "schedules": [
         {
           "type": "Data Services Credits",
@@ -1708,7 +1724,32 @@
           "usage": 0,
           "days_remaining": 111,
           "account": "Universal Assistance Argentina SA"
-        },
+        }
+      ],
+      "children": [],
+      "sela": false
+    },
+    {
+      "id": "0013000000hJOT0AAO",
+      "name": "ZURICH ARGENTINA COMPA\u00d1IA DE SEGUROS S.A.",
+      "global_company": "Zurich Insurance Group AG",
+      "country": "AR",
+      "owner": "\u2014",
+      "territory": "LATAM_GRW_ENTR_AR_VERT2_03",
+      "allowance": 10350000,
+      "usage": 37,
+      "crr": 0.0,
+      "pct_used": 0.0,
+      "pct_remaining": 100.0,
+      "in_overage": false,
+      "days_remaining": 935,
+      "days_elapsed": 1,
+      "overage_date": "",
+      "upsell_usd": 47550,
+      "status": "activate",
+      "crr_cohort": "Under Consuming",
+      "daily_rate": 37,
+      "schedules": [
         {
           "type": "Data Services Credits",
           "start": "",
@@ -1728,16 +1769,7 @@
           "account": "ZURICH ARGENTINA COMPA\u00d1IA DE SEGUROS S.A."
         }
       ],
-      "children": [
-        {
-          "id": "0010M00001QqvYQQAZ",
-          "name": "Universal Assistance Argentina SA",
-          "allowance": 250900,
-          "usage": 0,
-          "pct_used": 0.0,
-          "crr": 0.0
-        }
-      ],
+      "children": [],
       "sela": false
     }
   ]
