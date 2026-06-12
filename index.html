@@ -409,7 +409,7 @@ function filtered() {
 function render() {
   const d = filtered();
   updateKPIs(d);
-  rebuildBubble(d);
+  try { rebuildBubble(d); } catch(e) { console.error('rebuildBubble error:', e); }
   buildTable(getSorted(d));
 }
 
