@@ -236,9 +236,11 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
         <tr style="background:#f8fafc">
           <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Account</th>
           <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">AE Owner</th>
-          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Últimos 30d (avg/día)</th>
-          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">90d (avg/día) · Δ vs 30d</th>
-          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">120d (avg/día) · Δ vs 30d</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Últimos 30d</th>
+          <th style="padding:10px 14px;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Δ</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">30–60d atrás</th>
+          <th style="padding:10px 14px;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Δ</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">60–90d atrás</th>
           <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">CRR%</th>
         </tr>
       </thead>
@@ -845,9 +847,8 @@ async function buildTrendsTable() {
   const tbody = document.getElementById('trend-tbody');
   if (!tbody) return;
   tbody.textContent = '';
-  document.getElementById('trend-updated').textContent = 'Promedio diario por ventana · últimas 30, 90 y 120 jornadas';
+  document.getElementById('trend-updated').textContent = 'Ventanas no solapadas · promedio diario por período';
 
-  // Load daily files for all accounts
   await Promise.all(ACCOUNTS.map(async a => {
     if (!DAILY_DATA[a.id]) {
       try {
@@ -857,41 +858,70 @@ async function buildTrendsTable() {
     }
   }));
 
-  // Only show accounts that have some daily data
-  const data = ACCOUNTS.filter(a => DAILY_DATA[a.id]?.trends?.d30 > 0 || DAILY_DATA[a.id]?.trends?.d90 > 0)
-    .sort((a,b) => (DAILY_DATA[b.id]?.trends?.d30||0) - (DAILY_DATA[a.id]?.trends?.d30||0));
+  // Calc avg for a slice of the series (all credit types summed)
+  function windowAvg(daily, fromEnd, size) {
+    if (!daily?.dates?.length) return 0;
+    const n = daily.dates.length;
+    const start = Math.max(0, n - fromEnd);
+    const end = Math.max(0, n - fromEnd + size);
+    if (start >= end) return 0;
+    const slice = daily.dates.slice(start, end);
+    if (!slice.length) return 0;
+    const total = slice.reduce((sum, _, i) => {
+      const idx = start + i;
+      return sum + Object.values(daily.series||{}).reduce((s, arr) => s + (arr[idx]||0), 0);
+    }, 0);
+    return Math.round(total / slice.length);
+  }
+
+  const data = ACCOUNTS
+    .map(a => {
+      const d = DAILY_DATA[a.id];
+      return {
+        a,
+        p1: windowAvg(d, 30, 30),   // últimos 30 días
+        p2: windowAvg(d, 60, 30),   // 31–60 días atrás
+        p3: windowAvg(d, 90, 30),   // 61–90 días atrás
+        p4: windowAvg(d, 120, 30),  // 91–120 días atrás
+      };
+    })
+    .filter(r => r.p1 > 0 || r.p2 > 0)
+    .sort((x, y) => y.p1 - x.p1);
 
   const tdStyle = 'padding:9px 12px;font-size:12px';
-
-  const trendCell = (v30, v90, v120) => {
-    if (!v30 && !v90) return '<td colspan="3" style="'+tdStyle+';color:#9aabb8;text-align:center">—</td>';
-    const pct30vs90 = v90 > 0 ? Math.round((v30 - v90) / v90 * 100) : null;
-    const pct30vs120 = v120 > 0 ? Math.round((v30 - v120) / v120 * 100) : null;
-    const col = (p) => p === null ? '#9aabb8' : p > 20 ? '#c23934' : p > 5 ? '#c07e00' : p < -20 ? '#027e46' : p < -5 ? '#5a6b7c' : '#9aabb8';
-    const fmt = (p) => p === null ? '—' : `${p>0?'+':''}${p}%`;
-    return `
-      <td style="${tdStyle};text-align:right;font-weight:700">${fmtM(v30)}/d</td>
-      <td style="${tdStyle};text-align:right;color:${col(pct30vs90)};font-weight:700">${fmtM(v90||0)}/d <span style="font-size:10px">${fmt(pct30vs90)}</span></td>
-      <td style="${tdStyle};text-align:right;color:${col(pct30vs120)};font-size:11px">${fmtM(v120||0)}/d <span style="font-size:10px">${fmt(pct30vs120)}</span></td>`;
+  const col = (p) => p === null ? '#9aabb8' : p > 20 ? '#c23934' : p > 5 ? '#c07e00' : p < -20 ? '#027e46' : p < -5 ? '#5a6b7c' : '#032d60';
+  const arrow = (p) => p === null ? '' : p > 10 ? ' ↑' : p < -10 ? ' ↓' : ' →';
+  const delta = (curr, prev) => {
+    if (!prev || !curr) return null;
+    return Math.round((curr - prev) / prev * 100);
+  };
+  const fmtDelta = (p) => {
+    if (p === null) return '<span style="color:#9aabb8">—</span>';
+    const c = col(p);
+    return `<span style="color:${c};font-weight:700">${p>0?'+':''}${p}%${arrow(p)}</span>`;
   };
 
-  data.forEach(a => {
+  data.forEach(({a, p1, p2, p3, p4}) => {
     const tr = document.createElement('tr');
     tr.style.cssText = 'border-bottom:1px solid #f0f4f8;cursor:pointer';
     tr.addEventListener('click', () => openDetail(a));
-    const t = DAILY_DATA[a.id]?.trends || {};
     const crrColor = a.crr>80?'#c23934':a.crr>20?'#c07e00':'#7a8b9a';
+    const d1vs2 = delta(p1, p2), d2vs3 = delta(p2, p3), d3vs4 = delta(p3, p4);
     tr.innerHTML = `
       <td style="${tdStyle};font-weight:800;color:#032d60">${esc(a.name)}</td>
       <td style="${tdStyle};color:#5a6b7c;font-size:11px">${esc(a.owner)}</td>
-      ${trendCell(t.d30, t.d90, t.d120)}
+      <td style="${tdStyle};text-align:right"><div style="font-weight:800;font-size:13px">${fmtM(p1)}/d</div><div style="font-size:10px;color:#9aabb8">últimos 30d</div></td>
+      <td style="${tdStyle};text-align:center">${fmtDelta(d1vs2)}<div style="font-size:10px;color:#9aabb8">vs mes ant.</div></td>
+      <td style="${tdStyle};text-align:right;color:#5a6b7c"><div>${fmtM(p2)}/d</div><div style="font-size:10px;color:#9aabb8">30–60d atrás</div></td>
+      <td style="${tdStyle};text-align:center">${fmtDelta(d2vs3)}<div style="font-size:10px;color:#9aabb8">vs mes ant.</div></td>
+      <td style="${tdStyle};text-align:right;color:#9aabb8"><div>${p3>0?fmtM(p3)+'/d':'—'}</div><div style="font-size:10px">60–90d atrás</div></td>
       <td style="${tdStyle};text-align:right;font-weight:800;color:${crrColor}">${a.crr}%</td>`;
     tbody.appendChild(tr);
   });
 
   if (data.length === 0) {
     const tr = document.createElement('tr');
-    tr.innerHTML = '<td colspan="6" style="padding:32px;text-align:center;color:#9aabb8">No hay datos de tendencia disponibles</td>';
+    tr.innerHTML = '<td colspan="8" style="padding:32px;text-align:center;color:#9aabb8">No hay datos de tendencia disponibles</td>';
     tbody.appendChild(tr);
   }
 }
