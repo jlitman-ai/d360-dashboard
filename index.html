@@ -837,8 +837,8 @@ async function buildTrendsTable() {
   document.getElementById('trend-updated').textContent = 'Week May 28–Jun 3 vs Jun 4–Jun 8 · DSC credits/day';
 
   // Pre-load daily data for accounts with trends to get Slack context
-  const data = ACCOUNTS.filter(a => a.country === 'AR' && a.w1_daily_avg != null);
-  await Promise.all(data.map(async a => {
+  const preloadAccs = ACCOUNTS.filter(a => a.country === 'AR' && a.w1_daily_avg != null);
+  await Promise.all(preloadAccs.map(async a => {
     if (!DAILY_DATA[a.id]) {
       try {
         const res = await fetch(`daily/${a.id}.json?t=${Date.now()}`);
