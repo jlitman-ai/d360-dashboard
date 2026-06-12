@@ -145,6 +145,13 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
     <option value="good">&gt;50% remaining</option>
   </select>
   <div class="fsep"></div>
+  <label>Entitlement</label>
+  <select id="fenttype" onchange="onFilter()">
+    <option value="all">All</option>
+    <option value="DSC">Data Services Credits</option>
+    <option value="Flex">Flex Credits</option>
+  </select>
+  <div class="fsep"></div>
   <label>SELA</label>
   <select id="fsela" onchange="onFilter()">
     <option value="all">All</option>
@@ -220,7 +227,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
 <!-- TRENDS -->
 <div id="view-trends" class="view">
   <div style="padding:18px 32px 0;display:flex;align-items:center;gap:12px">
-    <div style="font-size:15px;font-weight:800;color:#032d60">CRR Trend — Last 2 Weeks</div>
+    <div style="font-size:15px;font-weight:800;color:#032d60">Tendencias de Consumo</div>
     <div id="trend-updated" style="font-size:11px;color:#9aabb8"></div>
   </div>
   <div style="padding:14px 32px 32px">
@@ -229,10 +236,9 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
         <tr style="background:#f8fafc">
           <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Account</th>
           <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">AE Owner</th>
-          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Week 1 (May 28–Jun 3)</th>
-          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Week 2 (Jun 4–Jun 8)</th>
-          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Δ Week</th>
-          <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Trend</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Últimos 30d (avg/día)</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">90d (avg/día) · Δ vs 30d</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">120d (avg/día) · Δ vs 30d</th>
           <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">CRR%</th>
         </tr>
       </thead>
@@ -321,7 +327,7 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
 let ACCOUNTS = [];
 let DAILY_DATA = {};
 let country = 'AR', sortKey = 'crr', sortDir = -1, searchQ = '';
-let fOwner = 'all', fCohort = 'all', fCred = 'all', fSela = 'all';
+let fOwner = 'all', fCohort = 'all', fCred = 'all', fSela = 'all', fEntType = 'all';
 let bubChart, projChart, dailyChart;
 
 let PAST_ACCOUNTS = [];
@@ -376,15 +382,16 @@ function onFilter() {
   fOwner = document.getElementById('fowner').value;
   fCohort = document.getElementById('fcohort').value;
   fCred = document.getElementById('fcred').value;
+  fEntType = document.getElementById('fenttype').value;
   fSela = document.getElementById('fsela').value;
   render();
 }
 
 function resetFilters() {
-  ['fowner','fcohort','fcred','fsela'].forEach(id => document.getElementById(id).value = 'all');
+  ['fowner','fcohort','fcred','fenttype','fsela'].forEach(id => document.getElementById(id).value = 'all');
   document.getElementById('sinput').value = '';
   searchQ = '';
-  fOwner = fCohort = fCred = fSela = 'all';
+  fOwner = fCohort = fCred = fEntType = fSela = 'all';
   render();
 }
 
@@ -399,6 +406,11 @@ function filtered() {
     if (fCred === 'critical' && a.pct_remaining >= 20) return false;
     if (fCred === 'low' && (a.pct_remaining < 20 || a.pct_remaining > 50)) return false;
     if (fCred === 'good' && a.pct_remaining <= 50) return false;
+    if (fEntType !== 'all') {
+      const typeMap = {'DSC': 'Data Services Credits', 'Flex': 'Flex Credits'};
+      const hasType = (a.schedules||[]).some(s => s.type === typeMap[fEntType]);
+      if (!hasType) return false;
+    }
     if (fSela === 'y' && !a.sela) return false;
     if (fSela === 'n' && a.sela) return false;
     if (searchQ && !a.name.toLowerCase().includes(searchQ.toLowerCase())) return false;
@@ -833,12 +845,10 @@ async function buildTrendsTable() {
   const tbody = document.getElementById('trend-tbody');
   if (!tbody) return;
   tbody.textContent = '';
+  document.getElementById('trend-updated').textContent = 'Promedio diario por ventana · últimas 30, 90 y 120 jornadas';
 
-  document.getElementById('trend-updated').textContent = 'Week May 28–Jun 3 vs Jun 4–Jun 8 · DSC credits/day';
-
-  // Pre-load daily data for accounts with trends to get Slack context
-  const preloadAccs = ACCOUNTS.filter(a => a.country === 'AR' && a.w1_daily_avg != null);
-  await Promise.all(preloadAccs.map(async a => {
+  // Load daily files for all accounts
+  await Promise.all(ACCOUNTS.map(async a => {
     if (!DAILY_DATA[a.id]) {
       try {
         const res = await fetch(`daily/${a.id}.json?t=${Date.now()}`);
@@ -847,52 +857,41 @@ async function buildTrendsTable() {
     }
   }));
 
-  const data = ACCOUNTS.filter(a => a.country === 'AR' && a.w1_daily_avg != null)
-    .sort((a,b) => {
-      const at = a.weekly_trend_pct ?? 0, bt = b.weekly_trend_pct ?? 0;
-      return Math.abs(bt) - Math.abs(at);
-    });
+  // Only show accounts that have some daily data
+  const data = ACCOUNTS.filter(a => DAILY_DATA[a.id]?.trends?.d30 > 0 || DAILY_DATA[a.id]?.trends?.d90 > 0)
+    .sort((a,b) => (DAILY_DATA[b.id]?.trends?.d30||0) - (DAILY_DATA[a.id]?.trends?.d30||0));
 
-  const tdStyle = 'padding:10px 14px;font-size:12px';
+  const tdStyle = 'padding:9px 12px;font-size:12px';
+
+  const trendCell = (v30, v90, v120) => {
+    if (!v30 && !v90) return '<td colspan="3" style="'+tdStyle+';color:#9aabb8;text-align:center">—</td>';
+    const pct30vs90 = v90 > 0 ? Math.round((v30 - v90) / v90 * 100) : null;
+    const pct30vs120 = v120 > 0 ? Math.round((v30 - v120) / v120 * 100) : null;
+    const col = (p) => p === null ? '#9aabb8' : p > 20 ? '#c23934' : p > 5 ? '#c07e00' : p < -20 ? '#027e46' : p < -5 ? '#5a6b7c' : '#9aabb8';
+    const fmt = (p) => p === null ? '—' : `${p>0?'+':''}${p}%`;
+    return `
+      <td style="${tdStyle};text-align:right;font-weight:700">${fmtM(v30)}/d</td>
+      <td style="${tdStyle};text-align:right;color:${col(pct30vs90)};font-weight:700">${fmtM(v90||0)}/d <span style="font-size:10px">${fmt(pct30vs90)}</span></td>
+      <td style="${tdStyle};text-align:right;color:${col(pct30vs120)};font-size:11px">${fmtM(v120||0)}/d <span style="font-size:10px">${fmt(pct30vs120)}</span></td>`;
+  };
+
   data.forEach(a => {
     const tr = document.createElement('tr');
     tr.style.cssText = 'border-bottom:1px solid #f0f4f8;cursor:pointer';
     tr.addEventListener('click', () => openDetail(a));
-
-    const tp = a.weekly_trend_pct;
-    const trendColor = tp === null ? '#9aabb8'
-      : tp > 20 ? '#c23934' : tp > 5 ? '#c07e00'
-      : tp < -20 ? '#027e46' : tp < -5 ? '#5a6b7c' : '#9aabb8';
-    const trendIcon = tp === null ? '→ No data'
-      : tp > 20 ? '🔴 Accelerating ↑'
-      : tp > 5 ? '↑ Growing'
-      : tp < -20 ? '🟢 Slowing ↓'
-      : tp < -5 ? '↓ Decreasing'
-      : '→ Stable';
-    const tpStr = tp !== null
-      ? `<span style="font-weight:800;color:${trendColor}">${tp>0?'+':''}${tp}%</span>`
-      : '—';
-
-    const dailyRaw = DAILY_DATA[a.id];
-    const ctx = dailyRaw?.slack_context;
-    const nameCell = ctx
-      ? `<td style="${tdStyle}"><div style="font-weight:800;color:#032d60;font-size:12px">${esc(a.name)}</div><div style="font-size:10px;color:#0176d3;margin-top:3px;cursor:pointer" onclick="event.stopPropagation();openDetail(ACCOUNTS.find(x=>x.id==='${a.id}'))">💬 Ver contexto</div></td>`
-      : `<td style="${tdStyle};font-weight:800;color:#032d60">${esc(a.name)}</td>`;
-
+    const t = DAILY_DATA[a.id]?.trends || {};
+    const crrColor = a.crr>80?'#c23934':a.crr>20?'#c07e00':'#7a8b9a';
     tr.innerHTML = `
-      ${nameCell}
-      <td style="${tdStyle};color:#5a6b7c">${esc(a.owner)}</td>
-      <td style="${tdStyle};text-align:right;color:#9aabb8">${a.w1_daily_avg != null ? fmtM(a.w1_daily_avg)+'/d' : '—'}</td>
-      <td style="${tdStyle};text-align:right;font-weight:700;color:#032d60">${a.w2_daily_avg != null ? fmtM(a.w2_daily_avg)+'/d' : '—'}</td>
-      <td style="${tdStyle};text-align:right">${tpStr}</td>
-      <td style="${tdStyle};font-weight:700;color:${trendColor}">${trendIcon}</td>
-      <td style="${tdStyle};text-align:right;font-weight:700;color:#032d60">${a.crr}%</td>`;
+      <td style="${tdStyle};font-weight:800;color:#032d60">${esc(a.name)}</td>
+      <td style="${tdStyle};color:#5a6b7c;font-size:11px">${esc(a.owner)}</td>
+      ${trendCell(t.d30, t.d90, t.d120)}
+      <td style="${tdStyle};text-align:right;font-weight:800;color:${crrColor}">${a.crr}%</td>`;
     tbody.appendChild(tr);
   });
 
   if (data.length === 0) {
     const tr = document.createElement('tr');
-    tr.innerHTML = '<td colspan="7" style="padding:32px;text-align:center;color:#9aabb8">No weekly trend data available</td>';
+    tr.innerHTML = '<td colspan="6" style="padding:32px;text-align:center;color:#9aabb8">No hay datos de tendencia disponibles</td>';
     tbody.appendChild(tr);
   }
 }

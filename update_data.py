@@ -144,6 +144,15 @@ def process_daily_records(records):
     return by_acc
 
 
+def calc_avg(dates_dict, all_dates, n_days):
+    """Average daily usage over the last n_days."""
+    window = all_dates[-n_days:] if len(all_dates) >= n_days else all_dates
+    if not window:
+        return 0
+    total = sum(sum(dates_dict[d].values()) for d in window)
+    return round(total / len(window))
+
+
 def write_daily_files(by_acc):
     """Write daily/ACCOUNT_ID.json files."""
     for acc_id, dates in by_acc.items():
@@ -153,9 +162,31 @@ def write_daily_files(by_acc):
             if sum(dates[dd].get(t, 0) for dd in all_dates) > 100
         ))
         series = {t: [round(dates[d].get(t, 0)) for d in all_dates] for t in all_types}
+
+        # Trends: avg daily usage over 30/90/120 days
+        avg30 = calc_avg(dates, all_dates, 30)
+        avg90 = calc_avg(dates, all_dates, 90)
+        avg120 = calc_avg(dates, all_dates, 120)
+        # DSC vs Flex breakdown per window
+        def avg_by_type(n):
+            window = all_dates[-n:] if len(all_dates) >= n else all_dates
+            if not window:
+                return {}
+            out = {}
+            for t in ['DSC', 'Flex']:
+                total = sum(dates[d].get(t, 0) for d in window)
+                out[t] = round(total / len(window))
+            return out
+
         out = {
             'dates': [d[5:] for d in all_dates],  # MM-DD format
-            'series': series
+            'series': series,
+            'trends': {
+                'd30': avg30, 'd90': avg90, 'd120': avg120,
+                'd30_by_type': avg_by_type(30),
+                'd90_by_type': avg_by_type(90),
+                'd120_by_type': avg_by_type(120),
+            }
         }
         with open(DAILY_DIR / f"{acc_id}.json", 'w') as f:
             json.dump(out, f)
