@@ -1,1 +1,1 @@
-{"dates": ["02-12", "02-13"], "series": {}, "trends": {"d30": 2, "d90": 2, "d120": 2, "d30_by_type": {"DSC": 2, "Flex": 0}, "d90_by_type": {"DSC": 2, "Flex": 0}, "d120_by_type": {"DSC": 2, "Flex": 0}}}
+{"dates": ["02-12", "02-13"], "series": {}, "trends": {"d30": 2, "d60": 0, "d90": 0}}
