@@ -236,8 +236,11 @@ tbody td{padding:10px 12px;font-size:12px;vertical-align:middle}
         <tr style="background:#f8fafc">
           <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Account</th>
           <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">AE Owner</th>
-          <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Consumo por período (60–90d · 30–60d · últimos 30d)</th>
-          <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Tendencia</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">60–90d atrás</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">30–60d atrás</th>
+          <th style="padding:10px 14px;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Δ</th>
+          <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Últimos 30d</th>
+          <th style="padding:10px 14px;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">Δ vs mes ant.</th>
           <th style="padding:10px 14px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#9aabb8">CRR%</th>
         </tr>
       </thead>
@@ -873,59 +876,37 @@ async function buildTrendsTable() {
     .filter(g => g.p1 > 0 || g.p2 > 0)
     .sort((a, b) => b.p1 - a.p1);
 
-  const maxVal = Math.max(...rows.map(g => Math.max(g.p1, g.p2, g.p3)), 1);
-
-  const bar = (val, max, color) => {
-    const w = Math.round(val / max * 100);
-    return `<div style="display:inline-block;width:${w}%;min-width:${val>0?2:0}px;height:12px;background:${color};border-radius:2px;vertical-align:middle"></div>`;
+  const tdS = 'padding:10px 14px;font-size:12px';
+  const fmtPct = (curr, prev) => {
+    if (!prev || !curr) return '<span style="color:#9aabb8">—</span>';
+    const p = Math.round((curr - prev) / prev * 100);
+    const c = p > 10 ? '#c23934' : p > 3 ? '#c07e00' : p < -10 ? '#027e46' : p < -3 ? '#5a6b7c' : '#9aabb8';
+    const arrow = p > 3 ? ' ↑' : p < -3 ? ' ↓' : ' →';
+    return `<span style="font-weight:800;color:${c}">${p>0?'+':''}${p}%${arrow}</span>`;
   };
 
   rows.forEach(({leader, members, p1, p2, p3}) => {
     const tr = document.createElement('tr');
     tr.style.cssText = 'border-bottom:1px solid #f0f4f8;cursor:pointer';
     tr.addEventListener('click', () => openDetail(leader));
-
     const crrColor = leader.crr>80?'#c23934':leader.crr>20?'#c07e00':'#7a8b9a';
-    const isGroup = members.length > 1;
-    const nameLabel = isGroup
-      ? `<div style="font-weight:800;color:#032d60">${esc(leader.name)}</div><div style="font-size:10px;color:#9aabb8;margin-top:2px">${members.length} entidades agrupadas</div>`
-      : `<div style="font-weight:800;color:#032d60">${esc(leader.name)}</div>`;
-
-    // Trend direction: compare last 30d vs prev 30d
-    let arrow = '', arrowColor = '#9aabb8';
-    if (p2 > 0) {
-      const pct = Math.round((p1 - p2) / p2 * 100);
-      if (pct > 10)       { arrow = `↑ +${pct}%`; arrowColor = '#c23934'; }
-      else if (pct > 3)   { arrow = `↑ +${pct}%`; arrowColor = '#c07e00'; }
-      else if (pct < -10) { arrow = `↓ ${pct}%`;  arrowColor = '#027e46'; }
-      else if (pct < -3)  { arrow = `↓ ${pct}%`;  arrowColor = '#5a6b7c'; }
-      else                { arrow = `→ ${pct>0?'+':''}${pct}%`; arrowColor = '#9aabb8'; }
-    }
-
+    const nameLabel = members.length > 1
+      ? `<div style="font-weight:800;color:#032d60;font-size:12px">${esc(leader.name)}</div><div style="font-size:10px;color:#9aabb8;margin-top:2px">${members.length} entidades</div>`
+      : `<span style="font-weight:800;color:#032d60;font-size:12px">${esc(leader.name)}</span>`;
     tr.innerHTML = `
-      <td style="padding:10px 12px;width:220px">${nameLabel}</td>
-      <td style="padding:10px 12px;font-size:11px;color:#5a6b7c;width:130px">${esc(leader.owner)}</td>
-      <td style="padding:10px 12px;width:260px">
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
-          <div style="width:120px;background:#f0f4f8;border-radius:2px;overflow:hidden;height:12px">${bar(p3,maxVal,'#d0dce8')}</div>
-          <span style="font-size:10px;color:#9aabb8;min-width:60px">${p3>0?fmtM(p3)+'/d':'—'} <span style="font-size:9px">60–90d</span></span>
-        </div>
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
-          <div style="width:120px;background:#f0f4f8;border-radius:2px;overflow:hidden;height:12px">${bar(p2,maxVal,'#7bafd4')}</div>
-          <span style="font-size:10px;color:#5a6b7c;min-width:60px">${p2>0?fmtM(p2)+'/d':'—'} <span style="font-size:9px">30–60d</span></span>
-        </div>
-        <div style="display:flex;align-items:center;gap:6px">
-          <div style="width:120px;background:#f0f4f8;border-radius:2px;overflow:hidden;height:12px">${bar(p1,maxVal,'#0176d3')}</div>
-          <span style="font-size:11px;font-weight:800;color:#032d60;min-width:60px">${fmtM(p1)}/d <span style="font-size:9px;font-weight:400">últimos 30d</span></span>
-        </div>
-      </td>
-      <td style="padding:10px 12px;font-size:13px;font-weight:800;color:${arrowColor};white-space:nowrap">${arrow||'—'}</td>
-      <td style="padding:10px 12px;text-align:right;font-weight:800;color:${crrColor}">${leader.crr}%</td>`;
+      <td style="${tdS}">${nameLabel}</td>
+      <td style="${tdS};color:#5a6b7c;font-size:11px">${esc(leader.owner)}</td>
+      <td style="${tdS};text-align:right;color:#9aabb8">${p3>0?fmtM(p3)+'/d':'—'}</td>
+      <td style="${tdS};text-align:right;color:#5a6b7c">${p2>0?fmtM(p2)+'/d':'—'}</td>
+      <td style="${tdS};text-align:center">${fmtPct(p2,p3)}</td>
+      <td style="${tdS};text-align:right;font-weight:800;color:#032d60">${p1>0?fmtM(p1)+'/d':'—'}</td>
+      <td style="${tdS};text-align:center">${fmtPct(p1,p2)}</td>
+      <td style="${tdS};text-align:right;font-weight:800;color:${crrColor}">${leader.crr}%</td>`;
     tbody.appendChild(tr);
   });
 
   if (rows.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" style="padding:32px;text-align:center;color:#9aabb8">No hay datos disponibles</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" style="padding:32px;text-align:center;color:#9aabb8">No hay datos disponibles</td></tr>';
   }
 }
 
