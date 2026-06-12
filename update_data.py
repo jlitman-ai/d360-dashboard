@@ -41,6 +41,26 @@ ACCOUNT_IDS = [
     "0013000000FIu1bAAD",  # Aerolineas Argentinas
 ]
 
+# Parent → children grouping for display (child IDs → parent display ID)
+ACCOUNT_GROUPS = {
+    # Telecom group — parent: Telecom Argentina S.A.
+    '0013000000Boo13AAB': '00130000005tQ9vAAE',   # Telecom S.A.
+    '0010M00001SJ7JnQAL': '00130000005tQ9vAAE',   # Telecom S.A. - Copado
+    '0013y00001eDTFKAA4': '00130000005tQ9vAAE',   # Telecom Argentina S.A. (dup)
+    '001ed00000GPtRaAAL': '00130000005tQ9vAAE',   # Telecom Argentina S.A. (dup)
+    '001ed00000GR5gkAAD': '00130000005tQ9vAAE',   # Telecom Argentina S.A. (dup)
+    '0013y00001cQE4pAAG': '00130000005tQ9vAAE',   # Micro Sistemas S.A.U.
+    # MercadoLibre group — parent: MercadoLibre SRL
+    '001ed00000ZkW7BAAV': '00130000005dLuMAAU',   # Mercado Libre SELA TAB
+    # YPF group — parent: YPF S.A 2
+    '0010M00001UV2V8QAL': '0010M00001YtwTbQAJ',   # YPF
+    '0013000000I3YnKAAV': '0010M00001YtwTbQAJ',   # YPF S.A.
+    # Pan American Energy group — parent: PAE Sucursal Argentina
+    '0013000001CCp8VAAT': '0013000001GXGozAAH',   # PAE Llc Upstream
+    # BHN group — parent: BHN Seguros
+    '0013000000IkqzpAAB': '00130000016iGuYAAU',   # Banco Hipotecario
+}
+
 # This script is meant to be called from the CU skill with data injected
 # When run standalone, it reads from stdin (JSON from MCP calls)
 
@@ -212,6 +232,11 @@ def main():
     print("Processing entitlement records...")
     accounts = process_entitlement_records(ent_data.get('records', []))
     result = [calculate_metrics(acc) for acc in accounts.values()]
+
+    # Apply grouping: add group_id to each account
+    for acc in result:
+        acc['group_id'] = ACCOUNT_GROUPS.get(acc['id'], acc['id'])
+
     result.sort(key=lambda x: -x['crr'])
     print(f"  {len(result)} accounts processed")
 

@@ -1,6 +1,6 @@
 {
   "updated": "2026-06-12",
-  "generated_at": "2026-06-12T18:10:37.669899",
+  "generated_at": "2026-06-12T19:36:46.764438",
   "accounts": [
     {
       "id": "00130000005tQ9vAAE",
@@ -132,7 +132,8 @@
       "status": "growth",
       "crr_cohort": "Consuming Well",
       "daily_rate": 88397762,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005tQ9vAAE"
     },
     {
       "id": "0013000000rpjd2AAA",
@@ -174,7 +175,8 @@
       "status": "growth",
       "crr_cohort": "Consuming Well",
       "daily_rate": 161434,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000000rpjd2AAA"
     },
     {
       "id": "0013000000hItxDAAS",
@@ -216,7 +218,8 @@
       "status": "growth",
       "crr_cohort": "Consuming Well",
       "daily_rate": 472808,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000000hItxDAAS"
     },
     {
       "id": "0013000001CCpybAAD",
@@ -258,7 +261,8 @@
       "status": "growth",
       "crr_cohort": "Consuming Well",
       "daily_rate": 6085253,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000001CCpybAAD"
     },
     {
       "id": "0013000001GXGozAAH",
@@ -330,7 +334,8 @@
       "status": "growth",
       "crr_cohort": "Consuming Well",
       "daily_rate": 72754,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000001GXGozAAH"
     },
     {
       "id": "0013000000LjCTqAAN",
@@ -412,7 +417,8 @@
       "status": "track",
       "crr_cohort": "Consuming",
       "daily_rate": 64357,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000000LjCTqAAN"
     },
     {
       "id": "0013000000Boo13AAB",
@@ -484,7 +490,8 @@
       "status": "track",
       "crr_cohort": "Consuming",
       "daily_rate": 6255510,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005tQ9vAAE"
     },
     {
       "id": "00130000005dLuMAAU",
@@ -556,7 +563,8 @@
       "status": "track",
       "crr_cohort": "Under Consuming",
       "daily_rate": 374948,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005dLuMAAU"
     },
     {
       "id": "0013y00001chQJ7AAM",
@@ -598,7 +606,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 3439,
-      "sela": true
+      "sela": true,
+      "group_id": "0013y00001chQJ7AAM"
     },
     {
       "id": "00130000016iGuYAAU",
@@ -660,7 +669,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 4343,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000016iGuYAAU"
     },
     {
       "id": "0010M00001YuH8VQAV",
@@ -692,7 +702,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 41,
-      "sela": false
+      "sela": false,
+      "group_id": "0010M00001YuH8VQAV"
     },
     {
       "id": "0013y00001eDTFKAA4",
@@ -754,7 +765,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 568,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005tQ9vAAE"
     },
     {
       "id": "0010M00001YtwTbQAJ",
@@ -836,7 +848,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 24917,
-      "sela": true
+      "sela": true,
+      "group_id": "0010M00001YtwTbQAJ"
     },
     {
       "id": "0013000001GVBNOAA5",
@@ -908,7 +921,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 15787,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000001GVBNOAA5"
     },
     {
       "id": "0013000001NXdVAAA1",
@@ -960,7 +974,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 1108,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000001NXdVAAA1"
     },
     {
       "id": "0013000000IkoPEAAZ",
@@ -1002,7 +1017,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 218,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000000IkoPEAAZ"
     },
     {
       "id": "0010M00001SJS6AQAX",
@@ -1044,7 +1060,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 947,
-      "sela": true
+      "sela": true,
+      "group_id": "0010M00001SJS6AQAX"
     },
     {
       "id": "0013000000IkoJ1AAJ",
@@ -1076,7 +1093,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 377,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000000IkoJ1AAJ"
     },
     {
       "id": "0010M00001XyHDGQA3",
@@ -1138,7 +1156,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 2464,
-      "sela": true
+      "sela": true,
+      "group_id": "0010M00001XyHDGQA3"
     },
     {
       "id": "0013000000326geAAA",
@@ -1180,7 +1199,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 6,
-      "sela": false
+      "sela": false,
+      "group_id": "0013000000326geAAA"
     },
     {
       "id": "0013000001Kc6AyAAJ",
@@ -1212,7 +1232,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 3,
-      "sela": false
+      "sela": false,
+      "group_id": "0013000001Kc6AyAAJ"
     },
     {
       "id": "0010M00001WYEHwQAP",
@@ -1294,7 +1315,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 359,
-      "sela": true
+      "sela": true,
+      "group_id": "0010M00001WYEHwQAP"
     },
     {
       "id": "0013000000I3YnKAAV",
@@ -1336,7 +1358,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 2,
-      "sela": false
+      "sela": false,
+      "group_id": "0010M00001YtwTbQAJ"
     },
     {
       "id": "0013000000roRAXAA2",
@@ -1378,7 +1401,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 2,
-      "sela": false
+      "sela": false,
+      "group_id": "0013000000roRAXAA2"
     },
     {
       "id": "0010M00001WaxcVQAR",
@@ -1470,7 +1494,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 117,
-      "sela": true
+      "sela": true,
+      "group_id": "0010M00001WaxcVQAR"
     },
     {
       "id": "0010M00001UV6CPQA1",
@@ -1502,7 +1527,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "0010M00001UV6CPQA1"
     },
     {
       "id": "0013000000IkqzpAAB",
@@ -1544,7 +1570,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": false
+      "sela": false,
+      "group_id": "00130000016iGuYAAU"
     },
     {
       "id": "0013000000ZjBNtAAN",
@@ -1616,7 +1643,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000000ZjBNtAAN"
     },
     {
       "id": "0013y00001ceCeaAAE",
@@ -1648,7 +1676,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": false
+      "sela": false,
+      "group_id": "0013y00001ceCeaAAE"
     },
     {
       "id": "0010M00001Z0CHqQAN",
@@ -1690,7 +1719,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": false
+      "sela": false,
+      "group_id": "0010M00001Z0CHqQAN"
     },
     {
       "id": "001ed00000Ij7fkAAB",
@@ -1732,7 +1762,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": false
+      "sela": false,
+      "group_id": "001ed00000Ij7fkAAB"
     },
     {
       "id": "001ed00000ZkW7BAAV",
@@ -1804,7 +1835,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 57,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005dLuMAAU"
     },
     {
       "id": "0013y00001cQE4pAAG",
@@ -1866,7 +1898,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 2,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005tQ9vAAE"
     },
     {
       "id": "0013000001CCp8VAAT",
@@ -1898,7 +1931,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": false
+      "sela": false,
+      "group_id": "0013000001GXGozAAH"
     },
     {
       "id": "0010M00001WIWyTQAX",
@@ -1930,7 +1964,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "0010M00001WIWyTQAX"
     },
     {
       "id": "0010M00001QkgEKQAZ",
@@ -1972,7 +2007,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": false
+      "sela": false,
+      "group_id": "0010M00001QkgEKQAZ"
     },
     {
       "id": "0013000001MreUvAAJ",
@@ -2024,7 +2060,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000001MreUvAAJ"
     },
     {
       "id": "0013000001Msa8jAAB",
@@ -2066,7 +2103,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000001Msa8jAAB"
     },
     {
       "id": "001ed00000GR5gkAAD",
@@ -2128,7 +2166,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005tQ9vAAE"
     },
     {
       "id": "001ed00000GPtRaAAL",
@@ -2190,7 +2229,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005tQ9vAAE"
     },
     {
       "id": "0010M00001SJ7JnQAL",
@@ -2232,7 +2272,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "00130000005tQ9vAAE"
     },
     {
       "id": "0010M00001QqvYQQAZ",
@@ -2264,7 +2305,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": false
+      "sela": false,
+      "group_id": "0010M00001QqvYQQAZ"
     },
     {
       "id": "0010M00001UV2V8QAL",
@@ -2306,7 +2348,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "0010M00001YtwTbQAJ"
     },
     {
       "id": "0013000000hJOT0AAO",
@@ -2368,7 +2411,8 @@
       "status": "activate",
       "crr_cohort": "Under Consuming",
       "daily_rate": 0,
-      "sela": true
+      "sela": true,
+      "group_id": "0013000000hJOT0AAO"
     }
   ]
 }
